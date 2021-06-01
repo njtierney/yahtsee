@@ -1,0 +1,276 @@
+---
+title: "example"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{example}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(malariahts)
+library(tidyverse)
+library(here)
+library(INLA)
+library(inlabru)
+```
+
+
+```{r read-in-data}
+# reading in data
+prop_data <- read_csv(
+  file = here("data", "antimalusage_prop.csv"),
+  col_types = cols(
+    .default = col_double(),
+    unid_st = col_character(),
+    who_region = col_character(),
+    who_subregion = col_character(),
+    location_name = col_character()
+  )
+)
+
+prop_data
+
+prop_data_bin <- read_csv(
+  file = here("data", "antimalusage_binomial.csv"),
+  col_types = cols(
+    location_name = col_character(),
+    year = col_double(),
+    treat_act = col_double(),
+    treat_nonact = col_double(),
+    treat_total = col_double()
+  )
+)
+
+prop_data_bin
+
+prop_data_act <- prop_data %>% 
+  filter(drugid == 1) %>% 
+  full_join(prop_data_bin, 
+            by = c("location_name", "year")) %>% 
+  filter(year < 2019) %>% 
+  group_by(location_name) %>% 
+  mutate(areaID = group_indices()) %>% 
+  ungroup() %>% 
+  mutate(ID = row_number(),
+         time = yrid,
+         who_regionid1 = who_regionid,
+         who_subregionid1 = who_subregionid)
+```
+
+```{r fn-extract-mean}
+extract_inla_pred_mean <- function(x){
+  x$summary.linear.predictor$mean
+}
+```
+
+```{r fn-extract-transform}
+extract_transform_inla_pred <- function(inla_model){
+  stats::plogis(extract_inla_pred_mean(inla_model))
+}
+```
+
+
+```{r fn-inverse-logit}
+inverse_logit <- function(x){
+  (exp(x)) / ((1 + exp(x)))
+}
+```
+
+
+```{r fit-in-inla}
+## ****************************************
+## inla observed
+# previously, pred.inla1
+model_inla_obs <- inla(
+  treat_act ~ trtseek + yrid + f(ID, model = "iid"),
+  family = "binomial",
+  Ntrials = treat_total,
+  data = as.data.frame(prop_data_act),
+  # A boolean variable if the internal GMRF approximations be stored. 
+  control.compute = list(config = TRUE),
+  # compute is a boolean variable; should the marginals for the linear predictor be computed?
+  # link is 
+  control.predictor = list(compute = TRUE, link = 1)
+)
+```
+
+
+```{r with-bru}
+model_like <- inlabru::like(
+  formula = treat_act ~ trtseek + yrid,
+  family = "binomial",
+  Ntrials = prop_data_act$treat_total,
+  data = prop_data_act
+)
+library(inlabru)
+model_inla_bru_obs <- bru(
+  # we can give the random effect any name we like
+  components = treat_act ~ beta_id(ID, model = "iid"),
+  model_like,
+  options = list(
+    control.compute = list(config = TRUE),
+    control.predictor = list(compute = TRUE, link = 1)
+  )
+)
+
+```
+
+ 
+```{r fit-in-inla}
+prop_data_act$pred.inla <- extract_inla_pred_mean(model_inla_obs)
+prop_data_act$pred.inla1 <- inverse_logit(prop_data_act$pred.inla)
+prop_data_act$pred.inla1_plogis <- stats::plogis(prop_data_act$pred.inla)
+mean(prop_data_act$pred.inla1_plogis - prop_data_act$pred.inla1)
+
+extract_transform_inla_pred(model_inla_obs)
+```
+
+```{r}
+predict(model_inla_obs)
+```
+
+
+```{r fn-augment}
+augment.inla <- function(x, data, ...){
+  data %>% 
+    mutate(.fitted_mean = extract_transform_inla_pred(x))
+}
+```
+
+
+```{r fit-in-inla}
+## ****************************************
+## Inla observed + country
+## previously, `pred.inla2`
+model_inla_obs_country <- inla(
+    treat_act ~ trtseek + yrid + f(ID, 
+                                   model = "iid") + f(areaID,
+                                                      model = "iid"),
+    family = "binomial",
+    Ntrials = treat_total,
+    data = as.data.frame(prop_data_act),
+    control.compute = list(config = TRUE),
+    control.predictor = list(compute = TRUE, link = 1)
+  )
+```
+
+```{r fit-in-inla}
+## ****************************************
+## Inlas country + region
+## previously `pred.inla3`
+model_inla_country_region <-
+  inla(
+    treat_act ~ trtseek + yrid + f(areaID, model = "iid") + f(who_regionid),
+    family = "binomial",
+    Ntrials = treat_total,
+    data = as.data.frame(prop_data_act),
+    control.compute = list(config = TRUE),
+    control.predictor = list(compute = TRUE, link = 1)
+  )
+```
+
+
+```{r fit-in-inla}
+## ****************************************
+## Inla country time + region
+## previously `pred.inla4`
+model_inla_country_time_region <-
+  inla(
+    treat_act ~ trtseek + yrid + f(areaID, time, model = "iid") + f(who_regionid),
+    family = "binomial",
+    Ntrials = treat_total,
+    data = as.data.frame(prop_data_act),
+    control.compute = list(config = TRUE),
+    control.predictor = list(compute = TRUE, link = 1)
+  )
+```
+
+
+```{r fit-in-inla}
+## ****************************************
+## Inla region time region
+## previously `pred.inla5`
+model_region_time_region <-
+  inla(
+    treat_act ~ trtseek + yrid + f(who_regionid1, time, model = "iid") + f(who_regionid),
+    family = "binomial",
+    Ntrials = treat_total,
+    data = as.data.frame(prop_data_act),
+    control.compute = list(config = TRUE),
+    control.predictor = list(compute = TRUE, link = 1)
+  )
+```
+
+Add model predictions
+
+```{r}
+sort(names(prop_data_act))
+```
+
+
+```{r fit-in-inla}
+## ****************************************
+
+ggplot(data = prop_data_act %>% group_by(location_name, year)) +
+  geom_line(aes(x = year, y = pred.inla1, color = "INLA1-obs")) +
+  geom_line(aes(x = year, y = pred.inla2, color = "INLA2-obs+country")) +
+  geom_line(aes(x = year, y = pred.inla3, color = "INLA3-country+region")) +
+  geom_line(aes(x = year, y = pred.inla4, color = "INLA4-country_time+region")) +
+  geom_line(aes(x = year, y = pred.inla5, color = "INLA4-region_time+region")) +
+  geom_point(aes(x = year, y = propusage, color = "Observed")) +
+  labs(title = "Usage ACT", color = "Model") +
+  facet_wrap(~location_name) +
+  theme_bw() +
+  theme(
+    legend.position = "top",
+    legend.key.width = unit(1.5, "cm"),
+    legend.key.height = unit(0.2, "cm")
+  )
+```
+
+
+```{r fit-in-inla}
+ggplot(data = prop_data_act %>% group_by(location_name, year)) +
+  geom_line(aes(x = year, y = pred.inla1, color = "INLA1-obs")) +
+  geom_line(aes(x = year, y = pred.inla2, color = "INLA2-obs+country")) +
+  geom_line(aes(x = year, y = pred.inla3, color = "INLA3-country+region")) +
+  geom_line(aes(x = year, y = pred.inla4, color = "INLA4-country_time+region")) +
+  geom_line(aes(x = year, y = pred.inla5, color = "INLA5-region_time+region")) +
+  geom_point(aes(x = year, y = propusage, color = "Observed")) +
+  labs(title = "Usage ACT", color = "Model") +
+  facet_wrap(~location_name) +
+  theme_bw() +
+  theme(
+    legend.position = "top",
+    legend.key.width = unit(1.5, "cm"),
+    legend.key.height = unit(0.2, "cm")
+  )
+```
+
+
+```{r fit-in-inla}
+## Check per Country
+ggplot(data = prop_data_act %>% filter(location_name == "Democratic Republic Of The Congo")) +
+  geom_line(aes(x = year, y = pred.inla3, color = "INLA3-country+region")) +
+  geom_line(aes(x = year, y = pred.inla4, color = "INLA4-country_time+region")) +
+  geom_line(aes(x = year, y = pred.inla5, color = "INLA5-region_time+region")) +
+  geom_point(aes(x = year, y = propusage, color = "Observed")) +
+  labs(title = "Usage ACT", color = "Model") +
+  facet_wrap(~location_name) +
+  theme_bw() +
+  theme(
+    legend.position = "top",
+    legend.key.width = unit(1.5, "cm"),
+    legend.key.height = unit(0.2, "cm")
+  )
+
+```
+
