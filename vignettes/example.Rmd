@@ -57,7 +57,7 @@ prop_data_act <- prop_data %>%
             by = c("location_name", "year")) %>% 
   filter(year < 2019) %>% 
   group_by(location_name) %>% 
-  mutate(areaID = group_indices()) %>% 
+  mutate(areaID = cur_group_id()) %>% 
   ungroup() %>% 
   mutate(ID = row_number(),
          time = yrid,
