@@ -17,6 +17,7 @@ knitr::opts_chunk$set(
 ```{r setup}
 library(malariahts)
 library(inlabru)
+library(dplyr)
 ```
 
 ```{r}
@@ -40,7 +41,7 @@ malaria_africa_ex <- malaria_africa_ts %>%
   
 ```
 
-```{r}
+```{r inlabru, eval = FALSE}
 library(inlabru)
 model_like <- inlabru::like(
   formula = positive ~ lower_age + year,
@@ -78,7 +79,7 @@ model_inla_bru_obs <- bru(
 
 
 
-```{r}
+```{r susan-example, eval = FALSE}
 ## ****************************************
 ## inla observed
 # previously, pred.inla1

@@ -12,6 +12,7 @@ License: MIT + file LICENSE
 Additional_repositories: https://inla.r-inla-download.org/R/testing
 Suggests: 
     covr,
+    dplyr,
     knitr,
     rmarkdown,
     testthat (>= 3.0.0),
