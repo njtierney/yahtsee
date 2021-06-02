@@ -1,0 +1,140 @@
+---
+title: "inlabru-example"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{inlabru-example}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(malariahts)
+library(inlabru)
+```
+
+```{r}
+add_group_id <- function(.data, group){
+  .data %>% 
+    group_by({{ group }}) %>% 
+    mutate("{{ group }}_id" := cur_group_id()) %>% 
+    ungroup({{ group }})
+}
+```
+
+
+```{r add-groups}
+# add group id information
+malaria_africa_ex <- malaria_africa_ts %>% 
+  add_group_id(year) %>% 
+  add_group_id(country) %>% 
+  add_group_id(who_region) %>% 
+  add_group_id(who_subregion) %>% 
+  mutate(id = row_number())
+  
+```
+
+```{r}
+library(inlabru)
+model_like <- inlabru::like(
+  formula = positive ~ lower_age + year,
+  family = "gaussian",
+  data = malaria_africa_ex
+)
+model_inla_bru_obs <- bru(
+  # we can give the random effect any name we like
+  components = positive ~ r_id(id, model = "iid") + 
+    r_country(
+      year_id,
+      model = "ar1",
+      group = country_id
+      constr = FALSE
+      ) +
+    r_subregion(
+        year_id,
+        model = "ar1",
+        group = who_subregion_id,
+        constr = FALSE
+      ) +
+    r_region(
+        year_id,
+        model = "ar1",
+        group = who_region_id,
+        constr = FALSE
+      ),
+  model_like,
+  options = list(
+    control.compute = list(config = TRUE),
+    control.predictor = list(compute = TRUE, link = 1)
+  )
+)
+```
+
+
+
+```{r}
+## ****************************************
+## inla observed
+# previously, pred.inla1
+model_inla_obs <- inla(
+  treat_act ~ trtseek + yrid + f(ID, model = "iid"),
+  family = "binomial",
+  Ntrials = treat_total,
+  data = as.data.frame(prop_data_act),
+  # A boolean variable if the internal GMRF approximations be stored. 
+  control.compute = list(config = TRUE),
+  # compute is a boolean variable; should the marginals for the linear predictor be computed?
+  # link is 
+  control.predictor = list(compute = TRUE, link = 1)
+)
+
+
+
+## ## with dummy vars for regions + bym + s-p (linear effect of time for each area)
+res.detrend.regions.bymsp <-
+  inla(
+    emplogitact.d ~ 0 + is_act + trtseek.d + popurban.d + anc1cov.d +
+      oopfrac.d + hcaccess.d + eduallagsx.d + sbacov.d + haqi.d + 
+      actyears20.d + logthepc.d + 
+      who_subregion + year 
+    f(
+      country.idsp1, 
+      year.idsp1,
+      model = "iid"
+    ) +
+      f(
+        year.idx,
+        model = "ar1",
+        group = country.id,
+        constr = FALSE
+      ) +
+      f(
+        year.idy,
+        model = "ar1",
+        group = whosubregion.id,
+        constr = FALSE
+      ) +
+      f(
+        year.idz,
+        model = "ar1",
+        group = whoregion.id,
+        constr = FALSE
+      ),
+    data = data,
+    quantiles = c(0.025, 0.25, 0.5, 0.75, 0.975),
+    control.inla = list(
+      int.strategy =
+        "eb"
+    ),
+    scale = emplogitactvar,
+    control.compute = list(config = TRUE),
+    control.predictor = list(compute = TRUE)
+  )
+```
+
