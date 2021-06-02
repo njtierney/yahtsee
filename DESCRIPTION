@@ -9,7 +9,9 @@ Authors@R:
            comment = c(ORCID = "https://orcid.org/0000-0003-1460-8722"))
 Description: Hierarchical Time Series Models for Malaria.
 License: MIT + file LICENSE
+Additional_repositories: https://inla.r-inla-download.org/R/testing
 Suggests: 
+    covr,
     knitr,
     rmarkdown,
     testthat (>= 3.0.0),

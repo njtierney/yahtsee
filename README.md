@@ -9,6 +9,9 @@
 experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
 [![CRAN
 status](https://www.r-pkg.org/badges/version/malariahts)](https://CRAN.R-project.org/package=malariahts)
+[![R-CMD-check](https://github.com/njtierney/malariahts/workflows/R-CMD-check/badge.svg)](https://github.com/njtierney/malariahts/actions)
+[![Codecov test
+coverage](https://codecov.io/gh/njtierney/malariahts/branch/main/graph/badge.svg)](https://codecov.io/gh/njtierney/malariahts?branch=main)
 <!-- badges: end -->
 
 The goal of malariahts is to provide tools around fitting hierarchical
