@@ -31,6 +31,21 @@ You can install the released version of malariahts from GitHub with:
 remotes::install_github("njtierney/malariahts")
 ```
 
+### Installing INLA
+
+This package requires `INLA` - if it didn't install, try the following to install it
+
+```r
+options(
+  repos = c(
+    INLA = "https://inla.r-inla-download.org/R/testing",
+    CRAN = "https://cloud.r-project.org/"
+    )
+)
+
+install.packages("INLA")
+```
+
 ## Example
 
 This is a basic example which shows you how to solve a common problem:
