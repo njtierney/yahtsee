@@ -31,3 +31,22 @@ df_pred <- prediction_data(
 pred <- predict(m, df_pred, se.fit = TRUE)
 
 
+
+m <- fit(
+  response ~ fixed_1 + fixed_2 +
+    # inputs are  the levels of hierarchy, in order of decreasing size
+    hts(who_region, who_subregion, country),
+  data = df_fit,
+  family = "empirical_logit",
+  method = "inla-eb"
+)
+
+# or is it?
+
+model(
+  # inputs to hts() are  the levels of hierarchy, in order of decreasing size
+  response ~ fixed_1 + fixed_2 + hts(who_region, who_subregion, country),
+  .data = df_fit,
+  family = "empirical_logit",
+  method = "inla-eb"
+)
