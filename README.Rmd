@@ -48,9 +48,24 @@ install.packages("INLA")
 
 ## Example
 
-This is a basic example which shows you how to solve a common problem:
-
 ```{r example}
 library(malariahts)
-## basic example code
+# for nice table printing
+library(tibble)
 ```
+
+
+There are two example datasets.
+
+1. `who_regions`, containing region information from WHO database
+
+```{r who-regions-data}
+who_regions
+```
+
+2. `malaria_africa_ts` - containing malaria prevalence data, extracted using the `malariaAtlas` R package - https://cran.r-project.org/web/packages/malariaAtlas/vignettes/overview.html
+
+```{r malaria-africa-ts}
+malaria_africa_ts
+```
+
