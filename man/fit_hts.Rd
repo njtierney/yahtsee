@@ -6,6 +6,11 @@
 \usage{
 fit_hts(formula, ...)
 }
+\arguments{
+\item{formula}{a formula}
+
+\item{...}{extra args}
+}
 \description{
 Typically this includes a "Specials" section
 }

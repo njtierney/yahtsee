@@ -8,9 +8,9 @@
 #'
 #' @examples
 #'
-#' hts_builder(brolgar::wages, who_region, who_subregion, country)
+#' hts_builder(malaria_africa_ts, who_region, who_subregion, country)
 #'
-#' hts_builder(who_region, who_subregion, country) %>%
+#' hts_builder(malaria_africa_ts, who_region, who_subregion, country) %>%
 #'   paste0(collapse = " + ") %>%
 #'   rlang::sym()
 #'

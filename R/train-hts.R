@@ -32,8 +32,7 @@ train_hts <- function(.data, specials, ...){
       n = length(y),
       y_name = mv,
       fitted = fit,
-      residuals = e,
-      sigma2 = var(e, na.rm = TRUE)
+      residuals = e
     ),
     class = "model_fit_hts"
   )
