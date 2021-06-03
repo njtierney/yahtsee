@@ -1,0 +1,37 @@
+Package: yahtsee
+Title: Yet Another Hierachical Time Series Extension and Expansion.
+Version: 0.0.0.9000
+Authors@R: 
+    person(given = "Nicholas",
+           family = "Tierney",
+           role = c("aut", "cre"),
+           email = "nicholas.tierney@gmail.com",
+           comment = c(ORCID = "https://orcid.org/0000-0003-1460-8722"))
+Description: An opinionated approach to building hierarchical time series
+    models in R using INLA and inlabru.
+License: MIT + file LICENSE
+Depends: 
+    R (>= 2.10)
+Imports: 
+    fabletools,
+    inlabru,
+    magrittr,
+    purrr,
+    rlang,
+    tsibble
+Suggests: 
+    covr,
+    dplyr,
+    knitr,
+    rmarkdown,
+    testthat (>= 3.0.0),
+    tibble
+VignetteBuilder: 
+    knitr
+Additional_repositories: https://inla.r-inla-download.org/R/testing
+Config/testthat/edition: 3
+Encoding: UTF-8
+Language: es
+LazyData: true
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.1.1
