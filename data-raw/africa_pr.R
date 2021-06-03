@@ -2,10 +2,9 @@
 library(malariaAtlas)
 library(clock)
 library(tidyverse)
-library(malariahts)
-listData(datatype = "pr points")
+library(yahtsee)
 
-malaria_africa_raw <- getPR(continent = "Africa", species = "both") %>%
+malaria_africa_raw <- getPR(continent = "Africa", species = "Pf") %>%
   as_tibble()
 
 malaria_africa_tidy <- malaria_africa_raw %>%
@@ -28,13 +27,6 @@ malaria_africa_tidy <- malaria_africa_raw %>%
 
 # subset down to one measurement per country per year per month
 malaria_africa_reduced <- malaria_africa_tidy %>%
-  group_by(country,date) %>%
-  slice(1) %>%
-  ungroup()
-
-malaria_africa_ts <- as_tsibble(x = malaria_africa_reduced,
-                                key = country,
-                                index = date) %>%
   select(-dhs_id,
          -site_id,
          -site_name,
@@ -48,7 +40,40 @@ malaria_africa_ts <- as_tsibble(x = malaria_africa_reduced,
          -citation2,
          -citation3,
          -rural_urban,
-         -pcr_type) %>%
+         -pcr_type)
+
+malaria_africa_extra_cols <- malaria_africa_reduced %>%
+  select(country,
+         country_id,
+         continent_id,
+         date,
+         species,
+         method) %>%
+  distinct() %>%
+  arrange(country, date)
+
+
+malaria_africa_reduced %>%
+  group_by(country_id,
+           date) %>%
+  summarise(tot_positive = sum(positive),
+            tot_examined = sum(examined),
+            avg_lower_age = mean(lower_age),
+            avg_upper_age = mean(upper_age),
+            pr = tot_positive / tot_examined) %>%
+  right_join(malaria_africa_extra_cols,
+             by = c(""))
+  # slice(1) %>%
+  # ungroup()
+
+# sum positive
+# sum examined
+# recompute the PR, based on the sum of positive and examined
+
+malaria_africa_ts <- as_tsibble(x = malaria_africa_reduced,
+                                key = country,
+                                index = date) %>%
+
   # who_regions data is exported in this package
   left_join(who_regions,
             by = c("country_id" = "country_iso_code",

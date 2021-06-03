@@ -1,29 +1,29 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# malariahts
+# yahtsee
 
 <!-- badges: start -->
 
 [![Lifecycle:
 experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
 [![CRAN
-status](https://www.r-pkg.org/badges/version/malariahts)](https://CRAN.R-project.org/package=malariahts)
-[![R-CMD-check](https://github.com/njtierney/malariahts/workflows/R-CMD-check/badge.svg)](https://github.com/njtierney/malariahts/actions)
+status](https://www.r-pkg.org/badges/version/yahtsee)](https://CRAN.R-project.org/package=yahtsee)
+[![R-CMD-check](https://github.com/njtierney/yahtsee/workflows/R-CMD-check/badge.svg)](https://github.com/njtierney/yahtsee/actions)
 [![Codecov test
-coverage](https://codecov.io/gh/njtierney/malariahts/branch/main/graph/badge.svg)](https://codecov.io/gh/njtierney/malariahts?branch=main)
+coverage](https://codecov.io/gh/njtierney/yahtsee/branch/main/graph/badge.svg)](https://codecov.io/gh/njtierney/yahtsee?branch=main)
 <!-- badges: end -->
 
-The goal of malariahts is to provide tools around fitting hierarchical
+The goal of yahtsee is to provide tools around fitting hierarchical
 time series models for data commonly found in malaria.
 
 ## Installation
 
-You can install the released version of malariahts from GitHub with:
+You can install the released version of yahtsee from GitHub with:
 
 ``` r
 # install.packages("remotes")
-remotes::install_github("njtierney/malariahts")
+remotes::install_github("njtierney/yahtsee")
 ```
 
 ### Installing INLA
@@ -45,7 +45,7 @@ install.packages("INLA")
 ## Example
 
 ``` r
-library(malariahts)
+library(yahtsee)
 # for nice table printing
 library(tibble)
 ```

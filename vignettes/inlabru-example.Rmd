@@ -15,7 +15,7 @@ knitr::opts_chunk$set(
 ```
 
 ```{r setup}
-library(malariahts)
+library(yahtsee)
 library(inlabru)
 library(dplyr)
 ```
@@ -37,38 +37,41 @@ malaria_africa_ex <- malaria_africa_ts %>%
   add_group_id(country) %>% 
   add_group_id(who_region) %>% 
   add_group_id(who_subregion) %>% 
-  mutate(id = row_number())
+  mutate(id = row_number()) %>% 
+  mutate_if(is.character, as.factor) %>% 
+  tidyr::drop_na()
   
 ```
 
 ```{r inlabru, eval = FALSE}
 library(inlabru)
 model_like <- inlabru::like(
-  formula = positive ~ lower_age + year,
+  formula = pr ~ lower_age + year,
   family = "gaussian",
   data = malaria_africa_ex
 )
 model_inla_bru_obs <- bru(
   # we can give the random effect any name we like
-  components = positive ~ r_id(id, model = "iid") + 
+  # components = pr ~ r_id(id, model = "iid") + 
+  components = pr ~
     r_country(
-      year_id,
+      year,
       model = "ar1",
-      group = country_id
+      group = country_id,
       constr = FALSE
-      ) +
-    r_subregion(
-        year_id,
-        model = "ar1",
-        group = who_subregion_id,
-        constr = FALSE
-      ) +
-    r_region(
-        year_id,
-        model = "ar1",
-        group = who_region_id,
-        constr = FALSE
-      ),
+      ), 
+    # r_subregion(
+    #     year,
+    #     model = "ar1",
+    #     group = who_subregion_id,
+    #     constr = FALSE
+    #   ) +
+    # r_region(
+    #     year,
+    #     model = "ar1",
+    #     group = who_region_id,
+    #     constr = FALSE
+    #   ),
   model_like,
   options = list(
     control.compute = list(config = TRUE),
