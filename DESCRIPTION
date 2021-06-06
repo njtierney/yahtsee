@@ -10,6 +10,9 @@ Authors@R:
 Description: An opinionated approach to building hierarchical time series
     models in R using INLA and inlabru.
 License: MIT + file LICENSE
+URL: https://github.com/njtierney/yahtsee
+BugReports: https://github.com/njtierney/yahtsee/issues
+ByteCompile: TRUE
 Depends: 
     R (>= 2.10)
 Imports: 
