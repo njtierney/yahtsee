@@ -20,7 +20,7 @@ hts_builder <- function(.data, ...){
   data_index <- tsibble::index(.data)
 
   f_generator <- function(group){
-    rlang::expr(
+    f_expr <- rlang::expr(
       f(
         !!data_index,
         model = "ar1",
@@ -28,6 +28,8 @@ hts_builder <- function(.data, ...){
         constr = FALSE
       )
     )
+    f_expr[[1]] <- rlang::expr(!!group)
+    f_expr
   }
 
   purrr::map(.x = dots,
