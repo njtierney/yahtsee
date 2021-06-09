@@ -4,9 +4,18 @@
 \name{yahtsee-package}
 \alias{yahtsee}
 \alias{yahtsee-package}
-\title{yahtsee: Hierarchical Time Series Models for Malaria}
+\title{yahtsee: Yet Another Hierachical Time Series Extension and Expansion.}
 \description{
-Hierarchical Time Series Models for Malaria.
+An opinionated approach to building hierarchical time series
+    models in R using INLA and inlabru.
+}
+\seealso{
+Useful links:
+\itemize{
+  \item \url{https://github.com/njtierney/yahtsee}
+  \item Report bugs at \url{https://github.com/njtierney/yahtsee/issues}
+}
+
 }
 \author{
 \strong{Maintainer}: Nicholas Tierney \email{nicholas.tierney@gmail.com} (\href{https://orcid.org/0000-0003-1460-8722}{ORCID})
