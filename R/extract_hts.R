@@ -1,14 +1,12 @@
 #' .. content for \description{} (no empty lines) ..
 #'
-#' .. content for \details{} ..
-#'
-#' @title
-#' @param captured_formula
-#' @return
-#' @author Nicholas Tierney
-#' @export
-extract_hts <- function(captured_formula) {
+extract_hts <- function(formula) {
 
-  NULL
+  formula_string <- rlang::expr_text(formula)
+  hts_string <- as.character(stringr::str_extract_all(
+    string = formula_string,
+    pattern = "hts(?:\\()[^\\(\\)]*?(?:\\))"
+    ))
+  rlang::parse_expr(hts_string)
 
 }

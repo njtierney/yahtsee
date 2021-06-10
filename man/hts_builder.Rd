@@ -12,7 +12,7 @@ hts_builder(.data, ...)
 \item{...}{the levels of hierarchy, in order of decreasing size}
 }
 \value{
-list of expressions to pass into INLA
+constructed expression of ar1 terms to pass to inla
 }
 \description{
 Build hts call
@@ -20,9 +20,5 @@ Build hts call
 \examples{
 
 hts_builder(malaria_africa_ts, who_region, who_subregion, country)
-
-hts_builder(malaria_africa_ts, who_region, who_subregion, country) \%>\%
-  paste0(collapse = " + ") \%>\%
-  rlang::sym()
 
 }

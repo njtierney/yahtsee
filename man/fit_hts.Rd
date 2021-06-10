@@ -4,7 +4,7 @@
 \alias{fit_hts}
 \title{Fitted Hierarchical Time Series}
 \usage{
-fit_hts(formula, ...)
+fit_hts(formula, .data, family, ...)
 }
 \arguments{
 \item{formula}{a formula}
