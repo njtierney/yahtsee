@@ -2,11 +2,10 @@
 #'
 extract_hts <- function(formula) {
 
-  formula_string <- rlang::expr_text(formula)
-  hts_string <- as.character(stringr::str_extract_all(
-    string = formula_string,
-    pattern = "hts(?:\\()[^\\(\\)]*?(?:\\))"
-    ))
-  rlang::parse_expr(hts_string)
+  formula_terms <- stats::terms(formula, specials = "hts")
+  which_hts <- attr(formula_terms, "specials")$hts
+  which_response <- attr(formula_terms, "response")
+  hts_terms <- rownames(attr(formula_terms, "factors"))[which_hts]
+  hts_terms
 
 }

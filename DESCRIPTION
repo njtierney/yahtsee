@@ -24,7 +24,8 @@ Imports:
     stringdist,
     rlang,
     tsibble,
-    stringr
+    stringr,
+    stats
 Suggests: 
     covr,
     dplyr,

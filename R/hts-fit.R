@@ -13,15 +13,18 @@ fit_hts <- function(formula,
 
   response <- rlang::f_lhs(formula)
 
-  fixed_effects <- extract_fixed(formula)
-
   hts_terms <- extract_hts(formula)
+
+  fixed_effects <- extract_fixed(formula)
 
   built_hts <- hts_builder(.data, !!!hts_terms)
 
   # add groups to the data
-  data_w_groups <- .data %>%
-    purrr::map_df(!!!hts_terms, add_group_id)
+  data_w_groups <- purrr::map(
+    .x = hts_terms,
+    .f = add_group_id,
+    .data = .data
+    )
 
   # need a way to help users add an intercept or not?
   bru_formula <- !!response ~ !!fixed_effects + Intercept + !!built_hts
