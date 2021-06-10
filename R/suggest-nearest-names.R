@@ -9,19 +9,10 @@ suggest_nearest_likelihood_names <- function(x){
   # Warning - this uses all of your cores.
 
   # calculate a jaccard dissimilarity matrix
-  distance <- stringdist::stringdistmatrix(
+  distance <- stringdist::stringdist(
     x,
-    inla_likelihood_names,
-    method = 'jaccard',
-    nthread = parallel::detectCores()
+    inla_likelihood_names
   )
   # find the closest match for each
-  match <- apply(distance, 1, which.min)
-
-  # find how far away these were
-  dists <- apply(distance, 1, min)
-
-  # return these as a two-column matrix
-  return (cbind(match = match,
-                distance = dists))
+  inla_likelihood_names[min(distance) == distance]
 }

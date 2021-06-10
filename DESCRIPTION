@@ -24,7 +24,6 @@ Imports:
     stringdist,
     rlang,
     tsibble,
-    parallel,
     stringr
 Suggests: 
     covr,
