@@ -5,6 +5,6 @@ test_that("hts_builder returns a list", {
   who_subregion,
   country
 )
-  expect_type(built_hts_call, "list")
+  expect_type(built_hts_call, "language")
   expect_length(built_hts_call, 3)
 })

@@ -22,6 +22,5 @@ Build hts call
 }
 \examples{
 
-hts_builder(malaria_africa_ts, who_region, who_subregion, country)
 
 }

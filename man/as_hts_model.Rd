@@ -4,10 +4,10 @@
 \alias{as_hts_model}
 \title{Create object of class "hts_model"}
 \usage{
-as_hts_model(bru_model)
+as_hts_model(x)
 }
 \arguments{
-\item{bru_model}{model from inlabru}
+\item{x}{model from inlabru}
 }
 \value{
 hts model

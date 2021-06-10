@@ -42,8 +42,6 @@ malaria_africa_ex <- malaria_africa_ts %>%
 ```{r}
 dplyr::n_distinct(malaria_africa_ex$month_num)
 summary(malaria_africa_ex$month_num)
-hist(malaria_africa_ex$month_num, breaks = 100)
-barplot(table(malaria_africa_ex$year))
 ```
 
 
@@ -101,6 +99,11 @@ model <- bru(
 )
 ```
 
+```{r}
+model
+```
+
+
 ```{r model-data}
 new_test_data <- malaria_africa_ts %>% 
   mutate_if(is.character, as.factor) %>% 
@@ -122,6 +125,14 @@ m <- fit_hts(
   special_index = month_num,
   family = "gaussian"
 )
+```
+
+
+```{r model-fit-explore}
+library(tictoc)
+tic()
+identical(class(m), class(model))
+toc()
 ```
 
 
