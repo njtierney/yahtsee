@@ -20,16 +20,6 @@ library(inlabru)
 library(dplyr)
 ```
 
-```{r}
-add_group_id <- function(.data, group){
-  .data %>% 
-    group_by({{ group }}) %>% 
-    mutate("{{ group }}_id" := cur_group_id()) %>% 
-    ungroup({{ group }})
-}
-```
-
-
 ```{r add-groups}
 # add group id information
 malaria_africa_ex <- malaria_africa_ts %>% 
@@ -39,44 +29,63 @@ malaria_africa_ex <- malaria_africa_ts %>%
   add_group_id(who_subregion) %>% 
   mutate(id = row_number()) %>% 
   mutate_if(is.character, as.factor) %>% 
-  tidyr::drop_na()
+  tidyr::drop_na() %>% 
+  mutate(date_num = as.numeric(date))
   
 ```
 
-```{r inlabru, eval = FALSE}
-library(inlabru)
-model_like <- inlabru::like(
-  formula = pr ~ lower_age + year,
+
+```{r}
+# some notes:
+  # date/time has to be a factor, character, or numeric
+  # random effect terms cannot be in the fixed effects
+model <- INLA::inla(
+  pr ~ lower_age + 
+    f(
+      date_num,
+      group = .country_id,
+      model = "ar1",
+      constr = FALSE
+    ),
   family = "gaussian",
-  data = malaria_africa_ex
+  data = malaria_africa_ex,
+  verbose = TRUE
+  # options = list(
+  #   control.compute = list(config = TRUE),
+  #   control.predictor = list(compute = TRUE, link = 1)
+  # )
 )
-model_inla_bru_obs <- bru(
-  # we can give the random effect any name we like
-  # components = pr ~ r_id(id, model = "iid") + 
-  components = pr ~
+
+```
+
+
+```{r inlabru, eval = FALSE}
+model <- bru(
+  pr ~ lower_age + Intercept + 
     r_country(
       year,
+      group = .country_id,
       model = "ar1",
-      group = country_id,
       constr = FALSE
-      ), 
-    # r_subregion(
-    #     year,
-    #     model = "ar1",
-    #     group = who_subregion_id,
-    #     constr = FALSE
-    #   ) +
-    # r_region(
-    #     year,
-    #     model = "ar1",
-    #     group = who_region_id,
-    #     constr = FALSE
-    #   ),
-  model_like,
+    ) +
+    r_subregion(
+      year,
+      model = "ar1",
+      group = .who_subregion_id,
+      constr = FALSE
+      ) + 
+    r_region(
+      year,
+      model = "ar1",
+      group = .who_region_id,
+      constr = FALSE
+      ),
+  family = "gaussian",
+  data = malaria_africa_ex,
   options = list(
     control.compute = list(config = TRUE),
     control.predictor = list(compute = TRUE, link = 1)
-  )
+)
 )
 ```
 

@@ -5,6 +5,8 @@ library(tidyverse)
 library(yahtsee)
 library(tsibble)
 
+# getPR(continent = "Africa", species = "Pf") %>% autoplot()
+
 malaria_africa_raw <- getPR(continent = "Africa", species = "Pf") %>%
   as_tibble()
 
