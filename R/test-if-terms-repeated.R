@@ -1,12 +1,5 @@
 #' .. content for \description{} (no empty lines) ..
 #'
-#' .. content for \details{} ..
-#'
-#' @title
-#' @param formula
-#' @return
-#' @author Nicholas Tierney
-#' @export
 test_if_terms_repeated <- function(formula) {
 
   response <- formula[[2]]

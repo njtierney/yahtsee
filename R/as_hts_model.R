@@ -1,14 +1,10 @@
-#' .. content for \description{} (no empty lines) ..
-#'
-#' .. content for \details{} ..
-#'
-#' @title
-#' @param bru_model
-#' @return
+#' @title Create object of class "hts_model"
+#' @param bru_model model from inlabru
+#' @return hts model
 #' @author Nicholas Tierney
-#' @export
+#' @note internal
 as_hts_model <- function(bru_model) {
 
-  NULL
+  bru_model
 
 }
