@@ -25,7 +25,8 @@ Imports:
     rlang,
     tsibble,
     stringr,
-    stats
+    stats,
+    glue
 Suggests: 
     covr,
     dplyr,

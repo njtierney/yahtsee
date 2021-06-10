@@ -5,7 +5,7 @@ extract_fixed <- function(formula) {
   which_response <- attr(formula_terms, "response")
   which_hts_response <- c(which_hts, which_response)
   fixed_terms <- rownames(attr(formula_terms, "factors"))[-which_hts_response]
-  fixed_terms
+  expr_add(fixed_terms)
 
 }
 

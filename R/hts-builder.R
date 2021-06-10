@@ -14,13 +14,17 @@ hts_builder <- function(.data, ...){
   dots <- rlang::ensyms(...)
   data_index <- tsibble::index(.data)
 
-  f_generator <- function(group){
-    # need to add "." to the group name followed by _id
+  random_effect_ar1_generator <- function(group){
+
+    group_name <- rlang::enexpr(group)
+    new_name <- glue::glue(".{rlang::expr_text(group_name)}_id")
+    new_group_sym <- rlang::sym(new_name)
+
     f_expr <- rlang::expr(
       f(
         !!data_index,
         model = "ar1",
-        group = !!group,
+        group = !!new_group_sym,
         constr = FALSE
       )
     )
@@ -30,12 +34,9 @@ hts_builder <- function(.data, ...){
 
   hts_terms <- purrr::map(
     .x = dots,
-    .f = f_generator
+    .f = random_effect_ar1_generator
     )
 
-  purrr::reduce(
-    .x = hts_terms,
-    .f = ~ rlang::expr(!!.x + !!.y)
-    )
+  expr_add(hts_terms)
 
 }
