@@ -5,7 +5,7 @@ fit_hts <- function(formula,
 
   test_if_tsibble(.data)
   test_if_formula(formula)
-  warn_if_formula_not_hts(formula)
+  test_if_hts_not_in_formula(formula)
   test_if_valid_family(family)
   test_if_terms_repeated(formula)
   test_dots_valid(...)
@@ -24,7 +24,7 @@ fit_hts <- function(formula,
 
   # add groups to the data
   data_w_groups <- .data %>%
-    map_df(!!!extracted_hts, add_group_id)
+    purrr::map_df(!!!extracted_hts, add_group_id)
 
   bru_model <- inlabru::bru(
     # need a way to help users add an intercept or not?

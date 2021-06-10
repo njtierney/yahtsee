@@ -4,7 +4,7 @@ test_if_valid_family <- function(family){
       c(
         "Must provide valid likelihood family",
         x = "You provided: {family}.",
-        i = "Did you mean: {suggest_nearest_names(family)}?",
+        # i = "Did you mean: {suggest_nearest_names(family)}?",
         i = "See {.var ?INLA::inla.models()$likelihood} for all likelihoods"
       )
     )
