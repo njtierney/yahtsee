@@ -30,8 +30,20 @@ malaria_africa_ex <- malaria_africa_ts %>%
   mutate(id = row_number()) %>% 
   mutate_if(is.character, as.factor) %>% 
   tidyr::drop_na() %>% 
-  mutate(date_num = as.numeric(date))
+  mutate(month_num = 12 * (year - min(year) + month))
+
+# years <- rep(2000:2003, each =12)
+# months <- rep(1:12, 4)
+# 12 * (years - min(years)) + months
+
   
+```
+
+```{r}
+dplyr::n_distinct(malaria_africa_ex$month_num)
+summary(malaria_africa_ex$month_num)
+hist(malaria_africa_ex$month_num, breaks = 100)
+barplot(table(malaria_africa_ex$year))
 ```
 
 
@@ -63,19 +75,19 @@ model <- INLA::inla(
 model <- bru(
   pr ~ lower_age + Intercept + 
     r_country(
-      year,
+      month_num,
       group = .country_id,
       model = "ar1",
       constr = FALSE
     ) +
     r_subregion(
-      year,
+      month_num,
       model = "ar1",
       group = .who_subregion_id,
       constr = FALSE
       ) + 
     r_region(
-      year,
+      month_num,
       model = "ar1",
       group = .who_region_id,
       constr = FALSE
@@ -88,7 +100,6 @@ model <- bru(
 )
 )
 ```
-
 
 
 ```{r susan-example, eval = FALSE}

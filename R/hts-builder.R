@@ -15,7 +15,6 @@
 #'   rlang::sym()
 #'
 hts_builder <- function(.data, ...){
-  n_dots <- rlang::dots_n(...)
   dots <- rlang::ensyms(...)
   data_index <- tsibble::index(.data)
 
