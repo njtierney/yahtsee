@@ -1,11 +1,3 @@
-#' Fitted Hierarchical Time Series
-#'
-#' Typically this includes a "Specials" section
-#'
-#' @param formula a formula
-#' @param ... extra args
-#'
-#' @export
 fit_hts <- function(formula, ...) {
   # Create a model class which combines the training method, specials, and data checks
   model_hts <- fabletools::new_model_class(

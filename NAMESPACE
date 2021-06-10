@@ -2,6 +2,5 @@
 
 export("%>%")
 export(add_group_id)
-export(fit_hts)
 export(hts_builder)
 importFrom(magrittr,"%>%")
