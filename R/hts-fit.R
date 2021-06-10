@@ -55,6 +55,6 @@ fit_hts <- function(formula,
   )
   cli::cli_process_done()
 
-  as_hts_model(bru_model)
+  bru_model
 
 }
