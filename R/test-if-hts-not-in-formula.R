@@ -1,5 +1,4 @@
-test_if_hts_not_in_formula <- function(formula){
-
+test_if_hts_not_in_formula <- function(formula) {
   contains_hts <- contains_hts_call(formula)
 
   hts_is_empty <- empty_hts(formula)
@@ -32,8 +31,4 @@ test_if_hts_not_in_formula <- function(formula){
       rlang::abort(msg)
     )
   }
-
-
-
-
 }

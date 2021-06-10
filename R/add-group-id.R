@@ -14,10 +14,11 @@
 #'
 #' @examples
 #' malaria_africa_ts %>% add_group_id(country)
-add_group_id <- function(.data, group){
+add_group_id <- function(.data, group) {
   .data %>%
     dplyr::group_by({{ group }}) %>%
     dplyr::mutate(".{{ group }}_id" := dplyr::cur_group_id(),
-                  .after = {{ group }}) %>%
+      .after = {{ group }}
+    ) %>%
     dplyr::ungroup({{ group }})
 }

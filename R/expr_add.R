@@ -1,4 +1,4 @@
-expr_add <- function(x){
+expr_add <- function(x) {
   purrr::reduce(
     .x = x,
     .f = ~ rlang::expr(!!.x + !!.y)

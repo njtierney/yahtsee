@@ -1,4 +1,4 @@
-train_hts <- function(.data, specials, ...){
+train_hts <- function(.data, specials, ...) {
   # Extract a vector of response data
   mv <- tsibble::measured_vars(.data)
   index <- tsibble::index(.data)
@@ -17,11 +17,13 @@ train_hts <- function(.data, specials, ...){
   # Compute the seasonal averages
   season_id <- seq(0, length(y) - 1) %% m
   season_y <- split(y, season_id)
-  season_avg <- vapply(season_y, FUN = mean, FUN.VALUE = numeric(1L),
-                       USE.NAMES = FALSE)
+  season_avg <- vapply(season_y,
+    FUN = mean, FUN.VALUE = numeric(1L),
+    USE.NAMES = FALSE
+  )
 
   # Compute fitted values and residuals
-  fit <- season_avg[season_id+1]
+  fit <- season_avg[season_id + 1]
   e <- y - fit
 
   # Create S3 model object

@@ -10,15 +10,13 @@
 #'
 #' @examples
 #'
-# # hts_builder(malaria_africa_ts, who_region, who_subregion, country)
-#'
-hts_builder <- function(.data, new_index, ...){
+#' # # hts_builder(malaria_africa_ts, who_region, who_subregion, country)
+hts_builder <- function(.data, new_index, ...) {
   dots <- rlang::ensyms(...)
   new_index <- rlang::enexpr(new_index)
   # data_index <- tsibble::index(.data)
 
-  random_effect_ar1_generator <- function(group){
-
+  random_effect_ar1_generator <- function(group) {
     group_name <- rlang::enexpr(group)
     new_name <- glue::glue(".{rlang::expr_text(group_name)}_id")
     new_group_sym <- rlang::sym(new_name)
@@ -39,8 +37,7 @@ hts_builder <- function(.data, new_index, ...){
   hts_terms <- purrr::map(
     .x = dots,
     .f = random_effect_ar1_generator
-    )
+  )
 
   expr_add(hts_terms)
-
 }

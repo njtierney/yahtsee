@@ -1,4 +1,4 @@
-suggest_nearest_likelihood_names <- function(x){
+suggest_nearest_likelihood_names <- function(x) {
 
   # shamelessly taken from https://gist.github.com/goldingn/80c82f2886debeb927a5
   # no-frills fuzzy matching of strings between character vectors

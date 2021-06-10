@@ -78,5 +78,4 @@ inla_likelihood_names <- c(
   "fmrisurv",
   "gompertz",
   "gompertzsurv"
-  )
-
+)

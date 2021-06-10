@@ -1,4 +1,4 @@
-test_if_formula <- function(x){
+test_if_formula <- function(x) {
   if (!is(x, "formula")) {
     msg <- cli::format_error(
       c(

@@ -2,8 +2,7 @@ fit_hts <- function(formula,
                     .data,
                     special_index,
                     family,
-                    ...){
-
+                    ...) {
   test_if_tsibble(.data)
   test_if_formula(formula)
   test_if_hts_not_in_formula(formula)
@@ -20,14 +19,14 @@ fit_hts <- function(formula,
 
   special_index <- rlang::enexpr(special_index)
 
-  built_hts <- hts_builder(.data, new_index =  !!special_index, !!!hts_terms)
+  built_hts <- hts_builder(.data, new_index = !!special_index, !!!hts_terms)
 
   # add groups to the data
   data_groups <- purrr::map_dfc(
     .x = hts_terms,
     .f = generate_group_id,
     .data = .data
-    )
+  )
 
   data_w_groups <- dplyr::bind_cols(
     .data,
@@ -56,5 +55,4 @@ fit_hts <- function(formula,
   cli::cli_process_done()
 
   bru_model
-
 }

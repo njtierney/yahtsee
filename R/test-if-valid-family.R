@@ -1,4 +1,4 @@
-test_if_valid_family <- function(family){
+test_if_valid_family <- function(family) {
   if (!(family %in% inla_likelihood_names)) {
     msg <- cli::format_error(
       c(

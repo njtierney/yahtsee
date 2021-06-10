@@ -1,4 +1,4 @@
-generate_group_id <- function(.data, group){
+generate_group_id <- function(.data, group) {
   .data %>%
     tibble::as_tibble() %>%
     dplyr::group_by({{ group }}) %>%
