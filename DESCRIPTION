@@ -16,12 +16,16 @@ ByteCompile: TRUE
 Depends: 
     R (>= 2.10)
 Imports: 
+    cli,
     fabletools,
     inlabru,
     magrittr,
     purrr,
+    stringdist,
     rlang,
-    tsibble
+    tsibble,
+    parallel,
+    stringr
 Suggests: 
     covr,
     dplyr,
