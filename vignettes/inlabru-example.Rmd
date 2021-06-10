@@ -101,6 +101,30 @@ model <- bru(
 )
 ```
 
+```{r model-data}
+new_test_data <- malaria_africa_ts %>% 
+  mutate_if(is.character, as.factor) %>% 
+  tidyr::drop_na() %>% 
+  as_tibble() %>% 
+  add_group_id(date) %>% 
+  mutate(month_num = 12 * (year - min(year) + month)) %>%
+  tsibble::as_tsibble(key = country,
+                      index = .date_id)
+```
+
+
+```{r model-fit}
+m <- fit_hts(
+  formula = pr ~ lower_age + upper_age +
+    # inputs are  the levels of hierarchy, in order of decreasing size
+    hts(who_region, who_subregion, country),
+  .data = new_test_data,
+  special_index = month_num,
+  family = "gaussian"
+)
+```
+
+
 
 ```{r susan-example, eval = FALSE}
 ## ****************************************

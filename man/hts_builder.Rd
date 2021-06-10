@@ -4,10 +4,13 @@
 \alias{hts_builder}
 \title{Build hts call}
 \usage{
-hts_builder(.data, ...)
+hts_builder(.data, new_index, ...)
 }
 \arguments{
 \item{.data}{tsibble}
+
+\item{new_index}{(temporary) new index we are using whilr working out
+model kinks}
 
 \item{...}{the levels of hierarchy, in order of decreasing size}
 }

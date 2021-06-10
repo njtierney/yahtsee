@@ -1,10 +1,11 @@
 #' @title Create object of class "hts_model"
-#' @param bru_model model from inlabru
+#' @param x model from inlabru
 #' @return hts model
 #' @author Nicholas Tierney
 #' @note internal
-as_hts_model <- function(bru_model) {
+as_hts_model <- function(x) {
 
-  bru_model
+  class(x) <- c("hts_model", x)
+  x
 
 }

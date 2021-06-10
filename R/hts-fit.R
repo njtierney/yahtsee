@@ -1,5 +1,6 @@
 fit_hts <- function(formula,
                     .data,
+                    special_index,
                     family,
                     ...){
 
@@ -17,7 +18,9 @@ fit_hts <- function(formula,
 
   fixed_effects <- extract_fixed(formula)
 
-  built_hts <- hts_builder(.data, !!!hts_terms)
+  special_index <- rlang::enexpr(special_index)
+
+  built_hts <- hts_builder(.data, new_index =  !!special_index, !!!hts_terms)
 
   # add groups to the data
   data_groups <- purrr::map_dfc(
@@ -32,8 +35,14 @@ fit_hts <- function(formula,
   )
 
   # need a way to help users add an intercept or not?
-  bru_formula <- !!response ~ !!fixed_effects + Intercept + !!built_hts
+  bru_formula <- rlang::new_formula(
+    lhs = rlang::enexpr(response),
+    rhs = rlang::expr(
+      !!rlang::enexpr(fixed_effects) + !!rlang::expr(Intercept) + !!rlang::enexpr(built_hts)
+    )
+  )
 
+  cli::cli_process_start("Fitting model with inlabru")
   bru_model <- inlabru::bru(
     bru_formula,
     family = family,
@@ -44,6 +53,7 @@ fit_hts <- function(formula,
       !!!dots
     )
   )
+  cli::cli_process_done()
 
   as_hts_model(bru_model)
 
