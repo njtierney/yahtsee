@@ -3,5 +3,6 @@
 export("%>%")
 export(add_group_id)
 export(hts_builder)
+export(prediction_data)
 importFrom(magrittr,"%>%")
 importFrom(rlang,":=")
