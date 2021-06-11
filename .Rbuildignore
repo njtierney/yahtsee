@@ -7,3 +7,6 @@
 ^data-raw$
 ^codecov\.yml$
 ^inst/example-test-data$
+^_pkgdown\.yml$
+^docs$
+^pkgdown$
