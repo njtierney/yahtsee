@@ -29,7 +29,7 @@ countries <- c("Ethiopia", "Tanzania")
 countries
 prediction_data(
   model_data = malaria_africa_ts,
-  key = country,
+  key = countries,
   index = date_range
  )
 }

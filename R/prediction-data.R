@@ -18,7 +18,7 @@
 #' countries
 #' prediction_data(
 #'   model_data = malaria_africa_ts,
-#'   key = country,
+#'   key = countries,
 #'   index = date_range
 #'  )
 prediction_data <- function(model_data, key, index, ...){
