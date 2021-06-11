@@ -1,5 +1,5 @@
 test_if_formula <- function(x) {
-  if (!is(x, "formula")) {
+  if (!methods::is(x, "formula")) {
     msg <- cli::format_error(
       c(
         "Input must be a formula",

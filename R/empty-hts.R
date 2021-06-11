@@ -1,7 +1,3 @@
-#' .. content for \description{} (no empty lines) ..
-#'
-#' .. content for \details{} ..
-#'
 empty_hts <- function(formula) {
   formula_string <- rlang::expr_text(formula)
   only_lr_paren <- stringr::str_detect(formula_string, "hts\\(\\)")

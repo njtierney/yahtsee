@@ -1,5 +1,5 @@
 extract_fixed <- function(formula) {
-  formula_terms <- terms(formula, specials = "hts")
+  formula_terms <- stats::terms(formula, specials = "hts")
   which_hts <- attr(formula_terms, "specials")$hts
   which_response <- attr(formula_terms, "response")
   which_hts_response <- c(which_hts, which_response)

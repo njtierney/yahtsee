@@ -1,5 +1,5 @@
 Package: yahtsee
-Title: Yet Another Hierachical Time Series Extension and Expansion.
+Title: Yet Another Hierachical Time Series Extension and Expansion
 Version: 0.0.0.9000
 Authors@R: 
     person(given = "Nicholas",
@@ -26,7 +26,8 @@ Imports:
     stringr,
     stats,
     glue,
-    tibble
+    tibble,
+    methods
 Suggests: 
     covr,
     dplyr,

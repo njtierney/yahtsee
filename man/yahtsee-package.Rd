@@ -4,7 +4,7 @@
 \name{yahtsee-package}
 \alias{yahtsee}
 \alias{yahtsee-package}
-\title{yahtsee: Yet Another Hierachical Time Series Extension and Expansion.}
+\title{yahtsee: Yet Another Hierachical Time Series Extension and Expansion}
 \description{
 An opinionated approach to building hierarchical time series
     models in R using INLA and inlabru.

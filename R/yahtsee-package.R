@@ -1,4 +1,5 @@
 #' @keywords internal
+#' @importFrom rlang :=
 "_PACKAGE"
 
 # The following block is used by usethis to automatically manage
@@ -10,8 +11,9 @@ NULL
 if (getRversion() >= "2.15.1") utils::globalVariables(c("."))
 globalVariables(
   c(
-    "f",
-    "m",
-    "specials_hts"
+    "terms",
+    "Intercept",
+    "is",
+    "f"
   )
 )

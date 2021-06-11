@@ -1,5 +1,3 @@
-#' .. content for \description{} (no empty lines) ..
-#'
 test_if_terms_repeated <- function(formula) {
   response <- formula[[2]]
   fixed_effects <- extract_fixed(formula)
@@ -12,7 +10,7 @@ test_if_terms_repeated <- function(formula) {
   if (response_in_fixed) {
     msg <- cli::format_error(
       c(
-        "Response term must only be used as response",
+        "Response term must only be used as response"
       )
     )
   }
