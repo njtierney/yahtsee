@@ -11,7 +11,7 @@
 #'
 #' @examples
 #' m <- fit_hts(
-#' inputs are  the levels of hierarchy, in order of decreasing size
+#' #inputs are  the levels of hierarchy, in order of decreasing size
 #' formula = pr ~ avg_lower_age + hts(who_subregion, country),
 #' .data = malaria_africa_ts,
 #' family = "gaussian",
@@ -56,7 +56,7 @@ fit_hts <- function(formula,
   bru_formula <- rlang::new_formula(
     lhs = rlang::enexpr(response),
     rhs = rlang::expr(
-      !!rlang::enexpr(fixed_effects) + !!rlang::expr(Intercept) + !!rlang::enexpr(built_hts)
+      !!rlang::enexpr(fixed_effects) + !!rlang::enexpr(built_hts)
     )
   )
 

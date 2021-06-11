@@ -25,7 +25,7 @@ Fit a hierarchical time series model
 }
 \examples{
 m <- fit_hts(
-inputs are  the levels of hierarchy, in order of decreasing size
+#inputs are  the levels of hierarchy, in order of decreasing size
 formula = pr ~ avg_lower_age + hts(who_subregion, country),
 .data = malaria_africa_ts,
 family = "gaussian",
