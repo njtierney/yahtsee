@@ -27,8 +27,11 @@ Imports:
     stats,
     glue,
     tibble,
-    methods
+    methods,
+    clock,
+    tidyr
 Suggests: 
+    ggplot2,
     covr,
     dplyr,
     knitr,
