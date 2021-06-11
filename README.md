@@ -28,8 +28,13 @@ remotes::install_github("njtierney/yahtsee")
 
 ### Installing INLA
 
-This package requires `INLA` - if it didn’t install, try the following
-to install it
+This package requires `INLA`, to install it you can run:
+
+``` r
+install_yahtsee_deps()
+```
+
+Or alternatively:
 
 ``` r
 options(
@@ -162,20 +167,20 @@ who_regions
 
 ``` r
 malaria_africa_ts
-#> # A tibble: 1,117 x 15
-#>    who_region who_subregion country country_id continent_id  year month
-#>    <chr>      <chr>         <chr>   <chr>      <chr>        <int> <int>
-#>  1 AFRO       AFRO-W        Angola  AGO        Africa        1989     6
-#>  2 AFRO       AFRO-W        Angola  AGO        Africa        2005    11
-#>  3 AFRO       AFRO-W        Angola  AGO        Africa        2006     4
-#>  4 AFRO       AFRO-W        Angola  AGO        Africa        2006    11
-#>  5 AFRO       AFRO-W        Angola  AGO        Africa        2006    12
-#>  6 AFRO       AFRO-W        Angola  AGO        Africa        2007     1
-#>  7 AFRO       AFRO-W        Angola  AGO        Africa        2007     2
-#>  8 AFRO       AFRO-W        Angola  AGO        Africa        2007     3
-#>  9 AFRO       AFRO-W        Angola  AGO        Africa        2011     1
-#> 10 AFRO       AFRO-W        Angola  AGO        Africa        2011     2
-#> # … with 1,107 more rows, and 8 more variables: date <date>, lower_age <dbl>,
-#> #   upper_age <int>, examined <int>, positive <dbl>, pr <dbl>, species <chr>,
-#> #   method <chr>
+#> # A tibble: 1,046 x 15
+#>    who_region who_subregion country date       month_num positive examined
+#>    <fct>      <fct>         <fct>   <date>         <dbl>    <dbl>    <int>
+#>  1 AFRO       AFRO-W        Angola  1989-06-01       120     15.8       50
+#>  2 AFRO       AFRO-W        Angola  2005-11-01       372     82        111
+#>  3 AFRO       AFRO-W        Angola  2006-04-01       300    102        197
+#>  4 AFRO       AFRO-W        Angola  2006-11-01       384     41        347
+#>  5 AFRO       AFRO-W        Angola  2006-12-01       396    173        734
+#>  6 AFRO       AFRO-W        Angola  2007-01-01       276    216        828
+#>  7 AFRO       AFRO-W        Angola  2007-02-01       288     42         71
+#>  8 AFRO       AFRO-W        Angola  2007-03-01       300    119        448
+#>  9 AFRO       AFRO-W        Angola  2011-01-01       324      1        239
+#> 10 AFRO       AFRO-W        Angola  2011-02-01       336    148       1132
+#> # … with 1,036 more rows, and 8 more variables: pr <dbl>, avg_lower_age <dbl>,
+#> #   continent_id <fct>, country_id <fct>, year <int>, month <int>,
+#> #   avg_upper_age <dbl>, species <fct>
 ```

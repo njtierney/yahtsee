@@ -35,7 +35,13 @@ remotes::install_github("njtierney/yahtsee")
 
 ### Installing INLA
 
-This package requires `INLA` - if it didn't install, try the following to install it
+This package requires `INLA`, to install it you can run:
+
+```r
+install_yahtsee_deps()
+```
+
+Or alternatively:
 
 ```r
 options(
