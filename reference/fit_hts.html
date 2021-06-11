@@ -163,6 +163,13 @@ to see these options.</p></td>
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>inlabru model</p>
+    <h2 class="hasAnchor" id="how-to-allow-weighting-of-observations-"><a class="anchor" href="#how-to-allow-weighting-of-observations-"></a>How to allow weighting of observations?</h2>
+
+    <p>To weight your observations, say when using empirical logit, you must
+provide a vector of variances, for each observation, which represents
+the uncertainty of measurement. You can do this, provided the
+<code>family = "gaussian"</code>, add the argument, <code>scale = vec</code>, to <code>fit_hts</code>,
+where <code>vec</code> is a vector of variances for each observation.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='va'>m</span> <span class='op'>&lt;-</span> <span class='fu'>fit_hts</span><span class='op'>(</span>
