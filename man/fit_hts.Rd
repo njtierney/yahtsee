@@ -15,7 +15,8 @@ fit_hts(formula, .data, special_index, family, ...)
 
 \item{family}{character}
 
-\item{...}{extra arguments to pass to inlabru}
+\item{...}{list of options to pass to \code{inlabru::bru}, see \code{?inlabru::bru}
+to see these options.}
 }
 \value{
 inlabru model

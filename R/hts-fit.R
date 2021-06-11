@@ -4,8 +4,8 @@
 #' @param .data a `tsibble`
 #' @param special_index The variable that represents time in your data
 #' @param family character
-#' @param ... extra arguments to pass to inlabru
-#'
+#' @param ... list of options to pass to `inlabru::bru`, see `?inlabru::bru`
+#'     to see these options.
 #' @return inlabru model
 #' @export
 #'
