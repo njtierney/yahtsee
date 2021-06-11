@@ -24,6 +24,14 @@ inlabru model
 \description{
 Fit a hierarchical time series model
 }
+\section{How to allow weighting of observations?}{
+To weight your observations, say when using empirical logit, you must
+provide a vector of variances, for each observation, which represents
+the uncertainty of measurement. You can do this, provided the
+\code{family = "gaussian"}, add the argument, \code{scale = vec}, to \code{fit_hts},
+where \code{vec} is a vector of variances for each observation.
+}
+
 \examples{
 m <- fit_hts(
 #inputs are  the levels of hierarchy, in order of decreasing size

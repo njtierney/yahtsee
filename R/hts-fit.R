@@ -7,6 +7,17 @@
 #' @param ... list of options to pass to `inlabru::bru`, see `?inlabru::bru`
 #'     to see these options.
 #' @return inlabru model
+#'
+#' @details
+#'
+#'  # How to allow weighting of observations?
+#'
+#'  To weight your observations, say when using empirical logit, you must
+#'  provide a vector of variances, for each observation, which represents
+#'  the uncertainty of measurement. You can do this, provided the
+#'  `family = "gaussian"`, add the argument, `scale = vec`, to `fit_hts`,
+#'  where `vec` is a vector of variances for each observation.
+#'
 #' @export
 #'
 #' @examples
