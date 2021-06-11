@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Fit a hierarchical time series model — fit_hts • yahtsee</title>
+<title>Create object of class "hts_inla" — as_hts_inla • yahtsee</title>
 
 
 <!-- jquery -->
@@ -39,8 +39,8 @@
 
 
 
-<meta property="og:title" content="Fit a hierarchical time series model — fit_hts" />
-<meta property="og:description" content="Fit a hierarchical time series model" />
+<meta property="og:title" content="Create object of class "hts_inla" — as_hts_inla" />
+<meta property="og:description" content="Create object of class &quot;hts_inla&quot;" />
 
 
 
@@ -123,56 +123,36 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Fit a hierarchical time series model</h1>
-    <small class="dont-index">Source: <a href='https://github.com/njtierney/yahtsee/blob/master/R/hts-fit.R'><code>R/hts-fit.R</code></a></small>
-    <div class="hidden name"><code>fit_hts.Rd</code></div>
+    <h1>Create object of class "hts_inla"</h1>
+    <small class="dont-index">Source: <a href='https://github.com/njtierney/yahtsee/blob/master/R/as-hts-model.R'><code>R/as-hts-model.R</code></a></small>
+    <div class="hidden name"><code>as_hts_inla.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Fit a hierarchical time series model</p>
+    <p>Create object of class "hts_inla"</p>
     </div>
 
-    <pre class="usage"><span class='fu'>fit_hts</span><span class='op'>(</span><span class='va'>formula</span>, <span class='va'>.data</span>, <span class='va'>special_index</span>, <span class='va'>family</span>, <span class='va'>...</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>as_hts_inla</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>formula</th>
-      <td><p>formula must contain fixed effect terms and <code>hts()</code></p></td>
-    </tr>
-    <tr>
-      <th>.data</th>
-      <td><p>a <code>tsibble</code></p></td>
-    </tr>
-    <tr>
-      <th>special_index</th>
-      <td><p>The variable that represents time in your data</p></td>
-    </tr>
-    <tr>
-      <th>family</th>
-      <td><p>character</p></td>
-    </tr>
-    <tr>
-      <th>...</th>
-      <td><p>list of options to pass to <code><a href='https://inlabru-org.github.io/inlabru/reference/bru.html'>inlabru::bru</a></code>, see <code><a href='https://inlabru-org.github.io/inlabru/reference/bru.html'>?inlabru::bru</a></code>
-to see these options.</p></td>
+      <th>x</th>
+      <td><p>model from inlabru</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>inlabru model</p>
+    <p>hts_inla model</p>
+    <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
 
-    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='va'>m</span> <span class='op'>&lt;-</span> <span class='fu'>fit_hts</span><span class='op'>(</span>
-<span class='co'>#inputs are  the levels of hierarchy, in order of decreasing size</span>
-formula <span class='op'>=</span> <span class='va'>pr</span> <span class='op'>~</span> <span class='va'>avg_lower_age</span> <span class='op'>+</span> <span class='fu'>hts</span><span class='op'>(</span><span class='va'>who_subregion</span>, <span class='va'>country</span><span class='op'>)</span>,
-.data <span class='op'>=</span> <span class='va'>malaria_africa_ts</span>,
-family <span class='op'>=</span> <span class='st'>"gaussian"</span>,
-special_index <span class='op'>=</span> <span class='va'>month_num</span>
-<span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='message'><span style='color: #00BBBB;'>ℹ</span> Fitting model with inlabru</span></div><div class='output co'>#&gt; <span class='message'>INLA not loaded safely.</span></div><div class='output co'>#&gt; <span class='error'>Error in inlabru::bru(bru_formula, family = family, data = data_w_groups,     options = list(control.compute = list(config = TRUE), control.predictor = list(compute = TRUE,         link = 1), !!!dots)): bru_safe_inla() is not TRUE</span></div><div class='output co'>#&gt; <span class='message'><span style='color: #BB0000;'>✖</span> Fitting model with inlabru ... failed</span></div><div class='output co'>#&gt; </div></pre>
+    <p>internal</p>
+    <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
+
+    <p>Nicholas Tierney</p>
+
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
