@@ -1,3 +1,22 @@
+#' Fit a hierarchical time series model
+#'
+#' @param formula formula must contain fixed effect terms and `hts()`
+#' @param .data a `tsibble`
+#' @param special_index The variable that represents time in your data
+#' @param family character
+#' @param ... extra arguments to pass to inlabru
+#'
+#' @return inlabru model
+#' @export
+#'
+#' @examples
+#' m <- fit_hts(
+#' inputs are  the levels of hierarchy, in order of decreasing size
+#' formula = pr ~ avg_lower_age + hts(who_subregion, country),
+#' .data = malaria_africa_ts,
+#' family = "gaussian",
+#' special_index = month_num
+#' )
 fit_hts <- function(formula,
                     .data,
                     special_index,

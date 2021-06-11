@@ -2,7 +2,12 @@
 
 export("%>%")
 export(add_group_id)
+export(as_tsibble)
+export(fit_hts)
 export(hts_builder)
+export(n_keys)
 export(prediction_data)
 importFrom(magrittr,"%>%")
 importFrom(rlang,":=")
+importFrom(tsibble,as_tsibble)
+importFrom(tsibble,n_keys)
