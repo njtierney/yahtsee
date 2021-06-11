@@ -94,6 +94,12 @@
     
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/njtierney/yahtsee">yahtsee</a></span><span class="op">)</span>
+<span class="co">#&gt; Loading required package: tsibble</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Attaching package: 'tsibble'</span>
+<span class="co">#&gt; The following objects are masked from 'package:base':</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt;     intersect, setdiff, union</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org">ggplot2</a></span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org">dplyr</a></span><span class="op">)</span>
 <span class="co">#&gt; </span>
@@ -110,7 +116,8 @@
 <p>For this model we are going to fit a very simple model using some summarised data from the <code>malariaAtlas</code> R package, <code>malaria_africa_ts</code>:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">malaria_africa_ts</span>
-<span class="co">#&gt; # A tibble: 1,046 x 15</span>
+<span class="co">#&gt; # A tsibble: 1,046 x 15 [1D]</span>
+<span class="co">#&gt; # Key:       country [46]</span>
 <span class="co">#&gt;    who_region who_subregion country date       month_num positive examined</span>
 <span class="co">#&gt;    &lt;fct&gt;      &lt;fct&gt;         &lt;fct&gt;   &lt;date&gt;         &lt;dbl&gt;    &lt;dbl&gt;    &lt;int&gt;</span>
 <span class="co">#&gt;  1 AFRO       AFRO-W        Angola  1989-06-01       120     15.8       50</span>
@@ -140,11 +147,6 @@
 <p>We use a <code>tsibble</code> because it stores this time (referred to as an “index”) and group (referred to as a “key”) information, which we can use inside our modelling software.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tsibble.tidyverts.org">tsibble</a></span><span class="op">)</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; Attaching package: 'tsibble'</span>
-<span class="co">#&gt; The following objects are masked from 'package:base':</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt;     intersect, setdiff, union</span>
 <span class="fu"><a href="https://tsibble.tidyverts.org/reference/key.html">key</a></span><span class="op">(</span><span class="va">malaria_africa_ts</span><span class="op">)</span>
 <span class="co">#&gt; [[1]]</span>
 <span class="co">#&gt; country</span>
@@ -172,7 +174,7 @@
 <p>We then provide the data, likelihood family (in this case “gaussian”, but all INLA likelihoods are available).</p>
 <p>We specify the time component at the moment using the <code>special_index</code> argument, but this will be removed later once we resolve a couple of bugs to do with the data.</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">m</span> <span class="op">&lt;-</span> <span class="fu">fit_hts</span><span class="op">(</span>
+<code class="sourceCode R"><span class="va">m</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/fit_hts.html">fit_hts</a></span><span class="op">(</span>
     <span class="co"># inputs are  the levels of hierarchy, in order of decreasing size</span>
   formula <span class="op">=</span> <span class="va">pr</span> <span class="op">~</span> <span class="va">avg_lower_age</span> <span class="op">+</span> <span class="fu">hts</span><span class="op">(</span><span class="va">who_region</span>, <span class="va">who_subregion</span>, <span class="va">country</span><span class="op">)</span>,
   .data <span class="op">=</span> <span class="va">malaria_africa_ts</span>,
@@ -227,7 +229,7 @@ formula <span class="op">=</span> <span class="va">pr</span> <span class="op">~<
 <li>Fit the model, parsing the hierarchy structure</li>
 </ol>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">model_hts</span> <span class="op">&lt;-</span> <span class="fu">fit_hts</span><span class="op">(</span>
+<code class="sourceCode R"><span class="va">model_hts</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/fit_hts.html">fit_hts</a></span><span class="op">(</span>
     <span class="co"># inputs are  the levels of hierarchy, in order of decreasing size</span>
   formula <span class="op">=</span> <span class="va">pr</span> <span class="op">~</span> <span class="va">avg_lower_age</span> <span class="op">+</span> <span class="fu">hts</span><span class="op">(</span><span class="va">who_region</span>, <span class="va">who_subregion</span>, <span class="va">country</span><span class="op">)</span>,
   .data <span class="op">=</span> <span class="va">malaria_africa_ts</span>,

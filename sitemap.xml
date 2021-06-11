@@ -10,6 +10,9 @@
     <loc>http://yahtsee.njtierney.com//reference/as_hts_model.html</loc>
   </url>
   <url>
+    <loc>http://yahtsee.njtierney.com//reference/fit_hts.html</loc>
+  </url>
+  <url>
     <loc>http://yahtsee.njtierney.com//reference/hts_builder.html</loc>
   </url>
   <url>
@@ -20,6 +23,9 @@
   </url>
   <url>
     <loc>http://yahtsee.njtierney.com//reference/prediction_data.html</loc>
+  </url>
+  <url>
+    <loc>http://yahtsee.njtierney.com//reference/reexports.html</loc>
   </url>
   <url>
     <loc>http://yahtsee.njtierney.com//reference/who_regions.html</loc>
