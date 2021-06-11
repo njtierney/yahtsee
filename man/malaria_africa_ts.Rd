@@ -5,7 +5,7 @@
 \alias{malaria_africa_ts}
 \title{Prevalence Rate data of Malaria in Africa}
 \format{
-An object of class \code{tbl_ts} (inherits from \code{tbl_df}, \code{tbl}, \code{data.frame}) with 1117 rows and 15 columns.
+An object of class \code{tbl_ts} (inherits from \code{tbl_df}, \code{tbl}, \code{data.frame}) with 1046 rows and 15 columns.
 }
 \usage{
 data(malaria_africa_ts)

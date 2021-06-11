@@ -115,8 +115,24 @@ malaria_africa_ts <- as_tsibble(
       "country"
     )
   ) %>%
-  relocate(who_region, who_subregion, .before = country)
-
-malaria_africa_ts
+  dplyr::ungroup() %>%
+  relocate(who_region, who_subregion, .before = country) %>%
+  mutate_if(is.character, as.factor) %>%
+  tidyr::drop_na() %>%
+  # as_tibble() %>%
+  # add_group_id(date) %>%
+  mutate(month_num = 12 * (year - min(year) + month)) %>%
+  select(who_region,
+         who_subregion,
+         country,
+         date,
+         month_num,
+         positive = total_positive,
+         examined = total_examined,
+         pr,
+         avg_lower_age,
+         everything())
+  # tsibble::as_tsibble(key = country,
+  #                     index = .date_id)
 
 usethis::use_data(malaria_africa_ts, overwrite = TRUE)
