@@ -77,8 +77,6 @@ fit_hts <- function(formula,
     family = family,
     data = data_w_groups,
     options = list(
-      control.compute = list(config = TRUE),
-      control.predictor = list(compute = TRUE, link = 1),
       !!!dots
     )
   )
