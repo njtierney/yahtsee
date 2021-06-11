@@ -48,14 +48,81 @@ options(
 install.packages("INLA")
 ```
 
-## Example
+## Example model
 
-```{r example}
+
+```{r model-fit, eval = FALSE}
+m <- fit_hts(
+    # inputs are  the levels of hierarchy, in order of decreasing size
+  formula = pr ~ avg_lower_age + hts(who_region, who_subregion, country),
+  .data = malaria_africa_ts,
+  family = "gaussian",
+  special_index = month_num
+)
+```
+
+This is a model with an AR1 process for each of these subregions using the `hts()` component in the formula. The inputs are the levels of hierarchy, in order of decreasing size.
+
+We then provide the data, likelihood family (in this case "gaussian", but all INLA likelihoods are available).
+
+We specify the time component at the moment using the `special_index` argument (this will be removed later once we resolve a couple of bugs to do with the data).
+
+The equivalent model fitted with `inlabru` would look like the following:
+
+```r
+inlabru::bru(
+formula = pr ~ avg_lower_age + Intercept + 
+  who_region(month_num, 
+             model = "ar1", 
+             group = .who_region_id,
+             constr = FALSE) + 
+  who_subregion(month_num, 
+                model = "ar1", 
+                group = .who_subregion_id, 
+                constr = FALSE) + 
+  country(month_num, 
+          model = "ar1", 
+          group = .country_id, 
+          constr = FALSE),
+    family = "gaussian",
+    data = malaria_africa_ts,
+    options = list(
+      control.compute = list(config = TRUE),
+      control.predictor = list(compute = TRUE, link = 1)
+      )
+      )
+```
+
+Using `yahtsee`'s `fit_hts` function, we now do not need to think about the following:
+
+1. What to name the random effects (who_region, who_subregion, country)
+1. Specifying the time component of the ar1 process (`month_num`)
+1. repeating the "ar1" component for each random effect
+1. The `group` argument requires a special index variable of a group to be made (`.who_subregion_id`)
+1. Additional options passed to `inlabru` in options to help get the appropriate data back.
+
+## Motivation
+
+This package was built to help make is simpler to create specific type of hierarchical time series models, for modelling packages like `INLA`, `inlabru`, and `mgcv`.
+
+Specifically we had the following goals:
+
+- Specify hierarchical time series random effects with a formula interface, similar to `gam` and other modelling software.
+- Handle as many data processing steps specific to model software as possible, so users can focus on creating the model rather than doing complex data wrangling steps to set up dummy variables.
+- Use `tsibble` data structure to store the `time` component of the time series so the model is aware of the time component and it doesn't need to be specified
+- Provide methods for model interrogation and diagnostics, e.g.,
+  - visualising model outputs
+  - predictions, residuals, partial predictive plots
+  - posterior predictive checks
+  - post-hoc prediction
+
+## Example data
+
+```{r lib}
 library(yahtsee)
 # for nice table printing
 library(tibble)
 ```
-
 
 There are two example datasets.
 
@@ -70,4 +137,3 @@ who_regions
 ```{r malaria-africa-ts}
 malaria_africa_ts
 ```
-
