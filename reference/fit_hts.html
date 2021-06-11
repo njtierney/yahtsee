@@ -164,7 +164,14 @@
     <p>inlabru model</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"></pre>
+    <pre class="examples"><div class='input'><span class='va'>m</span> <span class='op'>&lt;-</span> <span class='fu'>fit_hts</span><span class='op'>(</span>
+<span class='co'>#inputs are  the levels of hierarchy, in order of decreasing size</span>
+formula <span class='op'>=</span> <span class='va'>pr</span> <span class='op'>~</span> <span class='va'>avg_lower_age</span> <span class='op'>+</span> <span class='fu'>hts</span><span class='op'>(</span><span class='va'>who_subregion</span>, <span class='va'>country</span><span class='op'>)</span>,
+.data <span class='op'>=</span> <span class='va'>malaria_africa_ts</span>,
+family <span class='op'>=</span> <span class='st'>"gaussian"</span>,
+special_index <span class='op'>=</span> <span class='va'>month_num</span>
+<span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='message'><span style='color: #00BBBB;'>ℹ</span> Fitting model with inlabru</span></div><div class='output co'>#&gt; <span class='message'>INLA not loaded safely.</span></div><div class='output co'>#&gt; <span class='error'>Error in inlabru::bru(bru_formula, family = family, data = data_w_groups,     options = list(control.compute = list(config = TRUE), control.predictor = list(compute = TRUE,         link = 1), !!!dots)): bru_safe_inla() is not TRUE</span></div><div class='output co'>#&gt; <span class='message'><span style='color: #BB0000;'>✖</span> Fitting model with inlabru ... failed</span></div><div class='output co'>#&gt; </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

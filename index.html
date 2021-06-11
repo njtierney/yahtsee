@@ -98,8 +98,11 @@
 <div id="installing-inla" class="section level3">
 <h3 class="hasAnchor">
 <a href="#installing-inla" class="anchor"></a>Installing INLA</h3>
-<p>This package requires <code>INLA</code> - if it didn’t install, try the following to install it</p>
+<p>This package requires <code>INLA</code>, to install it you can run:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="reference/install_yahtsee_deps.html">install_yahtsee_deps</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<p>Or alternatively:</p>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/options.html">options</a></span><span class="op">(</span>
   repos <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span>
     INLA <span class="op">=</span> <span class="st">"https://inla.r-inla-download.org/R/testing"</span>,
@@ -113,7 +116,7 @@
 <div id="example-model" class="section level2">
 <h2 class="hasAnchor">
 <a href="#example-model" class="anchor"></a>Example model</h2>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">m</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/fit_hts.html">fit_hts</a></span><span class="op">(</span>
     <span class="co"># inputs are  the levels of hierarchy, in order of decreasing size</span>
   formula <span class="op">=</span> <span class="va">pr</span> <span class="op">~</span> <span class="va">avg_lower_age</span> <span class="op">+</span> <span class="fu">hts</span><span class="op">(</span><span class="va">who_region</span>, <span class="va">who_subregion</span>, <span class="va">country</span><span class="op">)</span>,
@@ -125,7 +128,7 @@
 <p>We then provide the data, likelihood family (in this case “gaussian”, but all INLA likelihoods are available).</p>
 <p>We specify the time component at the moment using the <code>special_index</code> argument (this will be removed later once we resolve a couple of bugs to do with the data).</p>
 <p>The equivalent model fitted with <code>inlabru</code> would look like the following:</p>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">inlabru</span><span class="fu">::</span><span class="fu"><a href="https://inlabru-org.github.io/inlabru/reference/bru.html">bru</a></span><span class="op">(</span>
 formula <span class="op">=</span> <span class="va">pr</span> <span class="op">~</span> <span class="va">avg_lower_age</span> <span class="op">+</span> <span class="va">Intercept</span> <span class="op">+</span> 
   <span class="fu">who_region</span><span class="op">(</span><span class="va">month_num</span>, 
@@ -178,7 +181,7 @@ formula <span class="op">=</span> <span class="va">pr</span> <span class="op">~<
 <div id="example-data" class="section level2">
 <h2 class="hasAnchor">
 <a href="#example-data" class="anchor"></a>Example data</h2>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/njtierney/yahtsee">yahtsee</a></span><span class="op">)</span>
 <span class="co"># for nice table printing</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tibble.tidyverse.org/">tibble</a></span><span class="op">)</span></code></pre></div>
@@ -187,7 +190,7 @@ formula <span class="op">=</span> <span class="va">pr</span> <span class="op">~<
 <li>
 <code>who_regions</code>, containing region information from WHO database</li>
 </ol>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">who_regions</span>
 <span class="co">#&gt; # A tibble: 110 x 4</span>
 <span class="co">#&gt;    who_region who_subregion country     country_iso_code</span>
@@ -208,24 +211,24 @@ formula <span class="op">=</span> <span class="va">pr</span> <span class="op">~<
 <code>malaria_africa_ts</code> - containing malaria prevalence data, extracted using the <code>malariaAtlas</code> R package - <a href="https://cran.r-project.org/web/packages/malariaAtlas/vignettes/overview.html" class="uri">https://cran.r-project.org/web/packages/malariaAtlas/vignettes/overview.html</a>
 </li>
 </ol>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">malaria_africa_ts</span>
-<span class="co">#&gt; # A tibble: 1,117 x 15</span>
-<span class="co">#&gt;    who_region who_subregion country country_id continent_id  year month</span>
-<span class="co">#&gt;    &lt;chr&gt;      &lt;chr&gt;         &lt;chr&gt;   &lt;chr&gt;      &lt;chr&gt;        &lt;int&gt; &lt;int&gt;</span>
-<span class="co">#&gt;  1 AFRO       AFRO-W        Angola  AGO        Africa        1989     6</span>
-<span class="co">#&gt;  2 AFRO       AFRO-W        Angola  AGO        Africa        2005    11</span>
-<span class="co">#&gt;  3 AFRO       AFRO-W        Angola  AGO        Africa        2006     4</span>
-<span class="co">#&gt;  4 AFRO       AFRO-W        Angola  AGO        Africa        2006    11</span>
-<span class="co">#&gt;  5 AFRO       AFRO-W        Angola  AGO        Africa        2006    12</span>
-<span class="co">#&gt;  6 AFRO       AFRO-W        Angola  AGO        Africa        2007     1</span>
-<span class="co">#&gt;  7 AFRO       AFRO-W        Angola  AGO        Africa        2007     2</span>
-<span class="co">#&gt;  8 AFRO       AFRO-W        Angola  AGO        Africa        2007     3</span>
-<span class="co">#&gt;  9 AFRO       AFRO-W        Angola  AGO        Africa        2011     1</span>
-<span class="co">#&gt; 10 AFRO       AFRO-W        Angola  AGO        Africa        2011     2</span>
-<span class="co">#&gt; # … with 1,107 more rows, and 8 more variables: date &lt;date&gt;, lower_age &lt;dbl&gt;,</span>
-<span class="co">#&gt; #   upper_age &lt;int&gt;, examined &lt;int&gt;, positive &lt;dbl&gt;, pr &lt;dbl&gt;, species &lt;chr&gt;,</span>
-<span class="co">#&gt; #   method &lt;chr&gt;</span></code></pre></div>
+<span class="co">#&gt; # A tibble: 1,046 x 15</span>
+<span class="co">#&gt;    who_region who_subregion country date       month_num positive examined</span>
+<span class="co">#&gt;    &lt;fct&gt;      &lt;fct&gt;         &lt;fct&gt;   &lt;date&gt;         &lt;dbl&gt;    &lt;dbl&gt;    &lt;int&gt;</span>
+<span class="co">#&gt;  1 AFRO       AFRO-W        Angola  1989-06-01       120     15.8       50</span>
+<span class="co">#&gt;  2 AFRO       AFRO-W        Angola  2005-11-01       372     82        111</span>
+<span class="co">#&gt;  3 AFRO       AFRO-W        Angola  2006-04-01       300    102        197</span>
+<span class="co">#&gt;  4 AFRO       AFRO-W        Angola  2006-11-01       384     41        347</span>
+<span class="co">#&gt;  5 AFRO       AFRO-W        Angola  2006-12-01       396    173        734</span>
+<span class="co">#&gt;  6 AFRO       AFRO-W        Angola  2007-01-01       276    216        828</span>
+<span class="co">#&gt;  7 AFRO       AFRO-W        Angola  2007-02-01       288     42         71</span>
+<span class="co">#&gt;  8 AFRO       AFRO-W        Angola  2007-03-01       300    119        448</span>
+<span class="co">#&gt;  9 AFRO       AFRO-W        Angola  2011-01-01       324      1        239</span>
+<span class="co">#&gt; 10 AFRO       AFRO-W        Angola  2011-02-01       336    148       1132</span>
+<span class="co">#&gt; # … with 1,036 more rows, and 8 more variables: pr &lt;dbl&gt;, avg_lower_age &lt;dbl&gt;,</span>
+<span class="co">#&gt; #   continent_id &lt;fct&gt;, country_id &lt;fct&gt;, year &lt;int&gt;, month &lt;int&gt;,</span>
+<span class="co">#&gt; #   avg_upper_age &lt;dbl&gt;, species &lt;fct&gt;</span></code></pre></div>
 </div>
 </div>
   </div>
