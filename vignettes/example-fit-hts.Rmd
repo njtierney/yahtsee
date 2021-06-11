@@ -1,0 +1,176 @@
+---
+title: "example-fit-hts"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{example-fit-hts}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(yahtsee)
+library(ggplot2)
+library(dplyr)
+```
+
+
+## The data 
+
+For this model we are going to fit a very simple model using some summarised data from the `malariaAtlas` R package, `malaria_africa_ts`:
+
+```{r show-data}
+malaria_africa_ts
+```
+
+This data has the following features we are interested in:
+
+- hierarchical structure (countries within who subregion, within region)
+- Positive rate measurements recorded over time for these areas (positive rate given by the number of positive cases divided by the number of cases examined).
+
+(Note that we are still getting some more covariates for this data.)
+
+### `tsibble` data
+
+This data is a `tsibble` (the "ts" is pronounced like the end of "ba**ts**").
+
+This is a speical time series aware table, that knows what elements identify the individual time components, in this case, country, and what the time index is, in this case, `date`.
+
+We use a `tsibble` because it stores this time (referred to as an "index") and group (referred to as a "key") information, which we can use inside our modelling software.
+
+```{r show-key-info}
+library(tsibble)
+key(malaria_africa_ts)
+index(malaria_africa_ts)
+```
+
+## Modelling
+
+Let's say we want to model the pr over time. Here is a plot of the pr  over time, where each line is a country, and facets represent the different who subregions:
+
+```{r plot-data}
+ggplot(malaria_africa_ts,
+       aes(x = date,
+           y = pr,
+           group = country,
+           colour = who_subregion)) + 
+  geom_line() +
+  facet_wrap(~who_subregion) + 
+  theme(legend.position = "none")
+```
+
+Let's create a simple model that has fixed effect of lower age. We add a AR1 process for each of these subregions using the `hts()` component in the formula. Here, the inputs arethe levels of hierarchy, in order of decreasing size:
+
+```r
+pr ~ avg_lower_age + hts(who_region, who_subregion, country)
+```
+
+We then provide the data, likelihood family (in this case "gaussian", but all INLA likelihoods are available).
+
+We specify the time component at the moment using the `special_index` argument, but this will be removed later once we resolve a couple of bugs to do with the data.
+
+```{r model-fit, eval = FALSE}
+m <- fit_hts(
+    # inputs are  the levels of hierarchy, in order of decreasing size
+  formula = pr ~ avg_lower_age + hts(who_region, who_subregion, country),
+  .data = malaria_africa_ts,
+  family = "gaussian",
+  special_index = month_num
+)
+```
+
+The equivalent model fitted with `inlabru` would look like the following:
+
+```r
+inlabru::bru(
+formula = pr ~ avg_lower_age + Intercept + 
+  who_region(month_num, 
+             model = "ar1", 
+             group = .who_region_id,
+             constr = FALSE) + 
+  who_subregion(month_num, 
+                model = "ar1", 
+                group = .who_subregion_id, 
+                constr = FALSE) + 
+  country(month_num, 
+          model = "ar1", 
+          group = .country_id, 
+          constr = FALSE),
+    family = "gaussian",
+    data = malaria_africa_ts,
+    options = list(
+      control.compute = list(config = TRUE),
+      control.predictor = list(compute = TRUE, link = 1)
+      )
+      )
+```
+
+Here are some of the extra considerations that need to be made:
+
+1. What to name the random effects (who_region, who_subregion, country)
+1. Specifying the time component of the ar1 process
+1. repeating the "ar1" component for each random effect
+1. The `group` argument requires a special index variable of a group to be made (`.who_subregion_id`)
+1. Additional options passed to `inlabru` in options to help get the appropriate data back.
+
+# Proposed workflow
+
+The proposed workflow of this type of model is as follows:
+
+1. Specify data as a `tsibble` object:
+
+```r
+library(tsibble)
+malaria_africa_ts <- as_tsibble(x = malaria_africa,
+                                key = country,
+                                index = date)
+```
+
+2. Fit the model, parsing the hierarchy structure
+
+```r
+model_hts <- fit_hts(
+    # inputs are  the levels of hierarchy, in order of decreasing size
+  formula = pr ~ avg_lower_age + hts(who_region, who_subregion, country),
+  .data = malaria_africa_ts,
+  family = "gaussian"
+)
+```
+
+3. Perform diagnostics
+
+```r
+diagnostics(model_hts)
+autoplot(model_hts)
+```
+
+4. Make prediction data
+
+```{r pred-data}
+date_range <- clock::date_build(2019, 2, 1:5)
+date_range
+countries <- c("Ethiopia", "Tanzania")
+countries
+df_pred <- prediction_data(
+  model_data = malaria_africa_ts,
+  key = countries,
+  index = date_range
+)
+
+df_pred
+```
+
+5. Post hoc prediction from the model to add uncertainty information
+
+```{r prediction, eval = FALSE}
+# post-hoc prediction function - with options for presenting the uncertainty
+pred <- predict(m, df_pred, se.fit = TRUE)
+
+```
+
