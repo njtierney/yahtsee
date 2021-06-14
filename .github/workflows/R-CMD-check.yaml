@@ -76,6 +76,14 @@ jobs:
           pak::pkg_install("rcmdcheck")
         shell: Rscript {0}
 
+      - name: install INLA
+        run: |
+          utils::install.packages(
+            pkgs =  "INLA",
+            repos = "https://inla.r-inla-download.org/R/testing"
+          )
+        shell: Rscript {0}
+
       - name: Session info
         run: |
           options(width = 100)
