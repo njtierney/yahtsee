@@ -1,5 +1,7 @@
 #' Create prediction data
 #'
+#' `r lifecycle::badge('experimental')`
+#'
 #' Create prediction data that has the same index and key as the model data
 #'   for use in prediction.
 #'

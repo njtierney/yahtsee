@@ -19,6 +19,9 @@ prediction_data(model_data, key, index, ...)
 \code{tsibble} object with the same index and key as \code{model_data}.
 }
 \description{
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#experimental}{\figure{lifecycle-experimental.svg}{options: alt='[Experimental]'}}}{\strong{[Experimental]}}
+}
+\details{
 Create prediction data that has the same index and key as the model data
 for use in prediction.
 }

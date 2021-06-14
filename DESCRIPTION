@@ -29,7 +29,8 @@ Imports:
     tibble,
     methods,
     clock,
-    tidyr
+    tidyr,
+    lifecycle
 Suggests: 
     ggplot2,
     covr,
