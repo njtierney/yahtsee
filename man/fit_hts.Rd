@@ -33,6 +33,7 @@ where \code{vec} is a vector of variances for each observation.
 }
 
 \examples{
+\dontrun{
 m <- fit_hts(
 #inputs are  the levels of hierarchy, in order of decreasing size
 formula = pr ~ avg_lower_age + hts(who_subregion, country),
@@ -40,4 +41,5 @@ formula = pr ~ avg_lower_age + hts(who_subregion, country),
 family = "gaussian",
 special_index = month_num
 )
+}
 }
