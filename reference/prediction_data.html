@@ -40,8 +40,7 @@
 
 
 <meta property="og:title" content="Create prediction data — prediction_data" />
-<meta property="og:description" content="Create prediction data that has the same index and key as the model data
-for use in prediction." />
+<meta property="og:description" content="" />
 
 
 
@@ -130,8 +129,7 @@ for use in prediction." />
     </div>
 
     <div class="ref-description">
-    <p>Create prediction data that has the same index and key as the model data
-for use in prediction.</p>
+    <p><a href='https://lifecycle.r-lib.org/articles/stages.html#experimental'><img src='figures/lifecycle-experimental.svg' alt='[Experimental]' /></a></p>
     </div>
 
     <pre class="usage"><span class='fu'>prediction_data</span><span class='op'>(</span><span class='va'>model_data</span>, <span class='va'>key</span>, <span class='va'>index</span>, <span class='va'>...</span><span class='op'>)</span></pre>
@@ -160,6 +158,10 @@ for use in prediction.</p>
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p><code>tsibble</code> object with the same index and key as <code>model_data</code>.</p>
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+
+    <p>Create prediction data that has the same index and key as the model data
+for use in prediction.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='va'>date_range</span> <span class='op'>&lt;-</span> <span class='fu'>clock</span><span class='fu'>::</span><span class='fu'><a href='https://clock.r-lib.org/reference/date_build.html'>date_build</a></span><span class='op'>(</span><span class='fl'>2019</span>, <span class='fl'>2</span>, <span class='fl'>1</span><span class='op'>:</span><span class='fl'>5</span><span class='op'>)</span>

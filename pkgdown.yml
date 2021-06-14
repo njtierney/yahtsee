@@ -3,7 +3,7 @@ pkgdown: 1.6.1
 pkgdown_sha: ~
 articles:
   example-fit-hts: example-fit-hts.html
-last_built: 2021-06-11T08:09Z
+last_built: 2021-06-14T02:41Z
 urls:
   reference: http://yahtsee.njtierney.com//reference
   article: http://yahtsee.njtierney.com//articles
