@@ -12,9 +12,7 @@ test_if_hts_not_in_formula <- function(formula) {
         x = "incorrect = {.var  y ~ x1 + x2 + hts()}"
       )
     )
-    return(
-      rlang::abort(msg)
-    )
+    rlang::abort(msg)
   }
 
   if (!contains_hts) {
@@ -27,8 +25,6 @@ test_if_hts_not_in_formula <- function(formula) {
         x = "incorrect = {.var  fit_hts(y ~ x1 + x2 + hts()})"
       )
     )
-    return(
-      rlang::abort(msg)
-    )
+    rlang::abort(msg)
   }
 }

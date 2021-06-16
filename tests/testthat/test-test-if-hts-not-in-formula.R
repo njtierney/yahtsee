@@ -7,10 +7,8 @@ test_that("test_if_hts_not_in_formula errors appropriately", {
     error = TRUE,
     test_if_hts_not_in_formula(y ~ x + hts())
   )
-  expect_error(
-    test_if_hts_not_in_formula(y ~ x + hts())
-  )
   expect_silent(
     test_if_hts_not_in_formula(y ~ x + hts(country))
   )
+
 })

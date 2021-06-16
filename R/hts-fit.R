@@ -3,7 +3,7 @@
 #' @param formula formula must contain fixed effect terms and `hts()`
 #' @param .data a `tsibble`
 #' @param special_index The variable that represents time in your data
-#' @param family character
+#' @param family character.
 #' @param ... list of options to pass to `inlabru::bru`, see `?inlabru::bru`
 #'     to see these options.
 #' @return inlabru model
@@ -41,7 +41,7 @@ fit_hts <- function(formula,
   test_if_valid_family(family)
   dots <- rlang::dots_list(..., .homonyms = "error")
   # test_if_terms_repeated(formula)
-  # test_dots_valid(dots)
+  # test_options_valid(dots)
 
   response <- rlang::f_lhs(formula)
 

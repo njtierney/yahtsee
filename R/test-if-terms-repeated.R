@@ -10,7 +10,12 @@ test_if_terms_repeated <- function(formula) {
   if (response_in_fixed) {
     msg <- cli::format_error(
       c(
-        "Response term must only be used as response"
+        "Response term must only be used as response",
+        "The response {.var {response}} was used on the right hand side of the \\
+        formula. The response should only be on the left hand side of the \\
+        formula.",
+        "x" = "y ~ x + {.strong y}",
+        "{cli::symbol$tick} y ~ x + z"
       )
     )
   }

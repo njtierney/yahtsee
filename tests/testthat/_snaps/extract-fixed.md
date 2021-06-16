@@ -1,4 +1,4 @@
-# extract_fixed
+# extract_fixed works
 
     Code
       extract_fixed(y ~ x)

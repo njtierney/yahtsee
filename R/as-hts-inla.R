@@ -4,6 +4,6 @@
 #' @author Nicholas Tierney
 #' @note internal
 as_hts_inla <- function(x) {
-  class(x) <- c("hts_inla", x)
+  class(x) <- c("hts_inla", class(x))
   x
 }
