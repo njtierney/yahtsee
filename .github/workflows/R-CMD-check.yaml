@@ -77,6 +77,7 @@ jobs:
 
       - name: install INLA
         run: |
+          utils::install.packages("foreach")
           utils::install.packages(
             pkgs =  "INLA",
             repos = "https://inla.r-inla-download.org/R/testing"
