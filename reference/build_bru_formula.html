@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Function reference • yahtsee</title>
+<title>create formula to pass to inlabru::bru — build_bru_formula • yahtsee</title>
 
 
 <!-- jquery -->
@@ -39,7 +39,8 @@
 
 
 
-<meta property="og:title" content="Function reference" />
+<meta property="og:title" content="create formula to pass to inlabru::bru — build_bru_formula" />
+<meta property="og:description" content="create formula to pass to inlabru::bru" />
 
 
 
@@ -58,7 +59,7 @@
   </head>
 
   <body data-spy="scroll" data-target="#toc">
-    <div class="container template-reference-index">
+    <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -120,96 +121,54 @@
       </header>
 
 <div class="row">
-  <div class="contents col-md-9">
+  <div class="col-md-9 contents">
     <div class="page-header">
-      <h1>Reference</h1>
+    <h1>create formula to pass to inlabru::bru</h1>
+    <small class="dont-index">Source: <a href='https://github.com/njtierney/yahtsee/blob/master/R/build_bru_formula.R'><code>R/build_bru_formula.R</code></a></small>
+    <div class="hidden name"><code>build_bru_formula.Rd</code></div>
     </div>
 
-    <table class="ref-index">
+    <div class="ref-description">
+    <p>create formula to pass to inlabru::bru</p>
+    </div>
 
-    <colgroup>
-      
-      <col class="alias" />
-      <col class="title" />
-    </colgroup>
+    <pre class="usage"><span class='fu'>build_bru_formula</span><span class='op'>(</span><span class='va'>formula</span>, <span class='va'>.data</span>, <span class='va'>special_index</span><span class='op'>)</span></pre>
 
-    <tbody>
-      <tr>
-        <th colspan="2">
-          <h2 id="section-all-functions" class="hasAnchor"><a href="#section-all-functions" class="anchor"></a>All functions</h2>
-          <p class="section-desc"></p>
-        </th>
-      </tr>
-      
-      
-    </tbody><tbody>
-      
-      
-      <tr>
-        
-        <td>
-          <p><code><a href="add_group_id.html">add_group_id()</a></code> </p>
-        </td>
-        <td><p>Helper function to add group ID information</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="as_hts_inla.html">as_hts_inla()</a></code> </p>
-        </td>
-        <td><p>Create object of class "hts_inla"</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="build_bru_formula.html">build_bru_formula()</a></code> </p>
-        </td>
-        <td><p>create formula to pass to inlabru::bru</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="create_hts_data.html">create_hts_data()</a></code> </p>
-        </td>
-        <td><p>Create data to be used when fitting a model with fit_hts</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="fit_hts.html">fit_hts()</a></code> </p>
-        </td>
-        <td><p>Fit a hierarchical time series model</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="hts_builder.html">hts_builder()</a></code> </p>
-        </td>
-        <td><p>Build hts call</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="install_yahtsee_deps.html">install_yahtsee_deps()</a></code> </p>
-        </td>
-        <td><p>Install yahtsee dependencies</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="malaria_africa_ts.html">malaria_africa_ts</a></code> </p>
-        </td>
-        <td><p>Prevalence Rate data of Malaria in Africa</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="prediction_data.html">prediction_data()</a></code> </p>
-        </td>
-        <td><p>Create prediction data</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="who_regions.html">who_regions</a></code> </p>
-        </td>
-        <td><p>Who Regions</p></td>
-      </tr>
-    </tbody>
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>formula</th>
+      <td><p>formula with an hts() term</p></td>
+    </tr>
+    <tr>
+      <th>.data</th>
+      <td><p>tsibble data</p></td>
+    </tr>
+    <tr>
+      <th>special_index</th>
+      <td><p>special index term</p></td>
+    </tr>
     </table>
-  </div>
 
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+
+    <p>formula</p>
+    <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
+
+    <p>Nicholas Tierney</p>
+
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='fu'>build_bru_formula</span><span class='op'>(</span>
+  formula <span class='op'>=</span> <span class='va'>pr</span> <span class='op'>~</span> <span class='va'>avg_lower_age</span> <span class='op'>+</span> <span class='fu'>hts</span><span class='op'>(</span><span class='va'>who_subregion</span>, <span class='va'>country</span><span class='op'>)</span>,
+  .data <span class='op'>=</span> <span class='va'>malaria_africa_ts</span>,
+  special_index <span class='op'>=</span> <span class='va'>month_num</span>
+<span class='op'>)</span>
+</div><div class='output co'>#&gt; pr ~ avg_lower_age + (who_subregion(month_num, model = "ar1", 
+#&gt;     group = .who_subregion_id, constr = FALSE) + country(month_num, 
+#&gt;     model = "ar1", group = .country_id, constr = FALSE))
+#&gt; &lt;environment: 0x7fdee596d5f0&gt;</div></pre>
+  </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
       <h2 data-toc-skip>Contents</h2>

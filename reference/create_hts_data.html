@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Function reference • yahtsee</title>
+<title>Create data to be used when fitting a model with fit_hts — create_hts_data • yahtsee</title>
 
 
 <!-- jquery -->
@@ -39,7 +39,8 @@
 
 
 
-<meta property="og:title" content="Function reference" />
+<meta property="og:title" content="Create data to be used when fitting a model with fit_hts — create_hts_data" />
+<meta property="og:description" content="Create data to be used when fitting a model with fit_hts" />
 
 
 
@@ -58,7 +59,7 @@
   </head>
 
   <body data-spy="scroll" data-target="#toc">
-    <div class="container template-reference-index">
+    <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -120,96 +121,61 @@
       </header>
 
 <div class="row">
-  <div class="contents col-md-9">
+  <div class="col-md-9 contents">
     <div class="page-header">
-      <h1>Reference</h1>
+    <h1>Create data to be used when fitting a model with fit_hts</h1>
+    <small class="dont-index">Source: <a href='https://github.com/njtierney/yahtsee/blob/master/R/create_hts_data.R'><code>R/create_hts_data.R</code></a></small>
+    <div class="hidden name"><code>create_hts_data.Rd</code></div>
     </div>
 
-    <table class="ref-index">
+    <div class="ref-description">
+    <p>Create data to be used when fitting a model with fit_hts</p>
+    </div>
 
-    <colgroup>
-      
-      <col class="alias" />
-      <col class="title" />
-    </colgroup>
+    <pre class="usage"><span class='fu'>create_hts_data</span><span class='op'>(</span><span class='va'>.data</span>, <span class='va'>formula</span><span class='op'>)</span></pre>
 
-    <tbody>
-      <tr>
-        <th colspan="2">
-          <h2 id="section-all-functions" class="hasAnchor"><a href="#section-all-functions" class="anchor"></a>All functions</h2>
-          <p class="section-desc"></p>
-        </th>
-      </tr>
-      
-      
-    </tbody><tbody>
-      
-      
-      <tr>
-        
-        <td>
-          <p><code><a href="add_group_id.html">add_group_id()</a></code> </p>
-        </td>
-        <td><p>Helper function to add group ID information</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="as_hts_inla.html">as_hts_inla()</a></code> </p>
-        </td>
-        <td><p>Create object of class "hts_inla"</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="build_bru_formula.html">build_bru_formula()</a></code> </p>
-        </td>
-        <td><p>create formula to pass to inlabru::bru</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="create_hts_data.html">create_hts_data()</a></code> </p>
-        </td>
-        <td><p>Create data to be used when fitting a model with fit_hts</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="fit_hts.html">fit_hts()</a></code> </p>
-        </td>
-        <td><p>Fit a hierarchical time series model</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="hts_builder.html">hts_builder()</a></code> </p>
-        </td>
-        <td><p>Build hts call</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="install_yahtsee_deps.html">install_yahtsee_deps()</a></code> </p>
-        </td>
-        <td><p>Install yahtsee dependencies</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="malaria_africa_ts.html">malaria_africa_ts</a></code> </p>
-        </td>
-        <td><p>Prevalence Rate data of Malaria in Africa</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="prediction_data.html">prediction_data()</a></code> </p>
-        </td>
-        <td><p>Create prediction data</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="who_regions.html">who_regions</a></code> </p>
-        </td>
-        <td><p>Who Regions</p></td>
-      </tr>
-    </tbody>
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>.data</th>
+      <td><p>tsibble</p></td>
+    </tr>
+    <tr>
+      <th>formula</th>
+      <td><p>formula with hts() term</p></td>
+    </tr>
     </table>
-  </div>
 
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+
+    <p>data.frame</p>
+
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='va'>data_w_groups</span> <span class='op'>&lt;-</span> <span class='fu'>create_hts_data</span><span class='op'>(</span>
+  .data <span class='op'>=</span> <span class='va'>malaria_africa_ts</span>,
+  formula <span class='op'>=</span> <span class='va'>pr</span> <span class='op'>~</span> <span class='va'>avg_lower_age</span> <span class='op'>+</span> <span class='fu'>hts</span><span class='op'>(</span><span class='va'>who_subregion</span>, <span class='va'>country</span><span class='op'>)</span>
+  <span class='op'>)</span>
+<span class='va'>data_w_groups</span>
+</div><div class='output co'>#&gt; <span style='color: #949494;'># A tsibble: 1,046 x 17 [1D]</span>
+#&gt; <span style='color: #949494;'># Key:       country [46]</span>
+#&gt;    who_region who_subregion country date       month_num positive examined
+#&gt;    <span style='color: #949494; font-style: italic;'>&lt;fct&gt;</span>      <span style='color: #949494; font-style: italic;'>&lt;fct&gt;</span>         <span style='color: #949494; font-style: italic;'>&lt;fct&gt;</span>   <span style='color: #949494; font-style: italic;'>&lt;date&gt;</span>         <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;int&gt;</span>
+#&gt; <span style='color: #BCBCBC;'> 1</span> AFRO       AFRO-W        Angola  1989-06-01       120     15.8       50
+#&gt; <span style='color: #BCBCBC;'> 2</span> AFRO       AFRO-W        Angola  2005-11-01       372     82        111
+#&gt; <span style='color: #BCBCBC;'> 3</span> AFRO       AFRO-W        Angola  2006-04-01       300    102        197
+#&gt; <span style='color: #BCBCBC;'> 4</span> AFRO       AFRO-W        Angola  2006-11-01       384     41        347
+#&gt; <span style='color: #BCBCBC;'> 5</span> AFRO       AFRO-W        Angola  2006-12-01       396    173        734
+#&gt; <span style='color: #BCBCBC;'> 6</span> AFRO       AFRO-W        Angola  2007-01-01       276    216        828
+#&gt; <span style='color: #BCBCBC;'> 7</span> AFRO       AFRO-W        Angola  2007-02-01       288     42         71
+#&gt; <span style='color: #BCBCBC;'> 8</span> AFRO       AFRO-W        Angola  2007-03-01       300    119        448
+#&gt; <span style='color: #BCBCBC;'> 9</span> AFRO       AFRO-W        Angola  2011-01-01       324      1        239
+#&gt; <span style='color: #BCBCBC;'>10</span> AFRO       AFRO-W        Angola  2011-02-01       336    148       <span style='text-decoration: underline;'>1</span>132
+#&gt; <span style='color: #949494;'># … with 1,036 more rows, and 10 more variables: pr &lt;dbl&gt;, avg_lower_age &lt;dbl&gt;,</span>
+#&gt; <span style='color: #949494;'>#   continent_id &lt;fct&gt;, country_id &lt;fct&gt;, year &lt;int&gt;, month &lt;int&gt;,</span>
+#&gt; <span style='color: #949494;'>#   avg_upper_age &lt;dbl&gt;, species &lt;fct&gt;, .who_subregion_id &lt;int&gt;,</span>
+#&gt; <span style='color: #949494;'>#   .country_id &lt;int&gt;</span></div></pre>
+  </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
       <h2 data-toc-skip>Contents</h2>
