@@ -3,6 +3,8 @@
 export("%>%")
 export(add_group_id)
 export(as_tsibble)
+export(build_bru_formula)
+export(create_hts_data)
 export(fit_hts)
 export(hts_builder)
 export(install_yahtsee_deps)
