@@ -30,7 +30,8 @@ Imports:
     methods,
     clock,
     tidyr,
-    lifecycle
+    lifecycle,
+    formula.tools
 Suggests: 
     ggplot2,
     covr,
@@ -47,5 +48,5 @@ Language: es
 LazyData: true
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.1.1
-Remotes:  
+Remotes: 
     r-lib/cli
