@@ -4,10 +4,12 @@
 \alias{as_hts_inla}
 \title{Create object of class "hts_inla"}
 \usage{
-as_hts_inla(x)
+as_hts_inla(x, formula)
 }
 \arguments{
 \item{x}{model from inlabru}
+
+\item{formula}{formula passed to \code{fit_hts()}}
 }
 \value{
 hts_inla model

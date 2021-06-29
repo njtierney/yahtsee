@@ -1,5 +1,8 @@
 #' @title Create object of class "hts_inla"
+#'
 #' @param x model from inlabru
+#' @param formula formula passed to `fit_hts()`
+#'
 #' @return hts_inla model
 #' @author Nicholas Tierney
 #' @note internal
