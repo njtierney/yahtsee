@@ -1,4 +1,4 @@
-# test_if_valid_family works
+# test_if_valid_family with expect_snapshot()
 
     Code
       test_if_valid_family("gauss")

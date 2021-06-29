@@ -51,7 +51,7 @@ fit_hts <- function(formula,
 
   cli::cli_process_start("Fitting model with inlabru")
   bru_model <- inlabru::bru(
-    bru_formula,
+    components = bru_formula,
     family = family,
     data = data_w_groups,
     options = list(
