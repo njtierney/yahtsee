@@ -159,15 +159,16 @@
     <p>Nicholas Tierney</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>build_bru_formula</span><span class='op'>(</span>
+    <pre class="examples"><div class='input'><span class='va'>bru_form</span> <span class='op'>&lt;-</span> <span class='fu'>build_bru_formula</span><span class='op'>(</span>
   formula <span class='op'>=</span> <span class='va'>pr</span> <span class='op'>~</span> <span class='va'>avg_lower_age</span> <span class='op'>+</span> <span class='fu'>hts</span><span class='op'>(</span><span class='va'>who_subregion</span>, <span class='va'>country</span><span class='op'>)</span>,
   .data <span class='op'>=</span> <span class='va'>malaria_africa_ts</span>,
   special_index <span class='op'>=</span> <span class='va'>month_num</span>
 <span class='op'>)</span>
+<span class='va'>bru_form</span>
 </div><div class='output co'>#&gt; pr ~ avg_lower_age + (who_subregion(month_num, model = "ar1", 
 #&gt;     group = .who_subregion_id, constr = FALSE) + country(month_num, 
 #&gt;     model = "ar1", group = .country_id, constr = FALSE))
-#&gt; &lt;environment: 0x7fbba133d790&gt;</div></pre>
+#&gt; &lt;environment: 0x7fcc7f4fee88&gt;</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
