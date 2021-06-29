@@ -56,7 +56,7 @@ jobs:
           writeLines(sprintf("R-%i.%i", getRversion()$major, getRversion()$minor), ".github/R-version")
         shell: Rscript {0}
 
-       - name: Restore R package cache
+      - name: Restore R package cache
         if: runner.os != 'Windows'
         uses: actions/cache@v2
         with:
