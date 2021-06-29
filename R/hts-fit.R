@@ -40,7 +40,6 @@ fit_hts <- function(formula,
   test_if_hts_not_in_formula(formula)
   test_if_valid_family(family)
   dots <- rlang::dots_list(..., .homonyms = "error")
-  # test_if_terms_repeated(formula)
   # test_options_valid(dots)
 
   special_index <- rlang::enexpr(special_index)
