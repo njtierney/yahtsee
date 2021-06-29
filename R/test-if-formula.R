@@ -1,11 +1,6 @@
 test_if_formula <- function(x) {
 
-  is_formula <- rlang::is_formula(x)
-  if (!is.character(x)){
-    is_one_sided <- formula.tools::is.one.sided(x)
-  }
-
-  if (!is_formula || is_one_sided) {
+  if (!methods::is(x, "formula")) {
     msg <- cli::format_error(
       c(
         "Input must be a formula",

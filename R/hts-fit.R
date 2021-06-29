@@ -40,12 +40,11 @@ fit_hts <- function(formula,
   test_if_hts_not_in_formula(formula)
   test_if_valid_family(family)
   dots <- rlang::dots_list(..., .homonyms = "error")
-  # test_if_terms_repeated(formula)
   # test_options_valid(dots)
 
   special_index <- rlang::enexpr(special_index)
 
-  bru_formula <- build_bru_formula(formula, .data, special_index)
+  bru_formula <- build_bru_formula(formula, .data, !!special_index)
 
   # add groups to the data
   data_w_groups <- create_hts_data(.data, formula)
