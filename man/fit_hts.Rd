@@ -13,7 +13,7 @@ fit_hts(formula, .data, special_index, family, ...)
 
 \item{special_index}{The variable that represents time in your data}
 
-\item{family}{character}
+\item{family}{character.}
 
 \item{...}{list of options to pass to \code{inlabru::bru}, see \code{?inlabru::bru}
 to see these options.}
