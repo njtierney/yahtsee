@@ -55,13 +55,14 @@ test_that("fit_hts fails when family specified twice", {
 })
 
 test_that("fit_hts succeeds when using example code", {
+  model <- fit_hts(
+    formula = pr ~ avg_lower_age + hts(who_subregion, country),
+    .data = malaria_africa_ts,
+    family = "gaussian",
+    special_index = month_num)
+
   expect_type(
-    fit_hts(
-      formula = pr ~ avg_lower_age + hts(who_subregion, country),
-      .data = dplyr::sample_frac(malaria_africa_ts, 0.05),
-      family = "gaussian",
-      special_index = month_num
-    ),
+    model,
     "list"
   )
 })
