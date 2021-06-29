@@ -20,11 +20,12 @@ formula
 create formula to pass to inlabru::bru
 }
 \examples{
-build_bru_formula(
+bru_form <- build_bru_formula(
   formula = pr ~ avg_lower_age + hts(who_subregion, country),
   .data = malaria_africa_ts,
   special_index = month_num
 )
+bru_form
 }
 \author{
 Nicholas Tierney

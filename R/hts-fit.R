@@ -45,7 +45,7 @@ fit_hts <- function(formula,
 
   special_index <- rlang::enexpr(special_index)
 
-  bru_formula <- build_bru_formula(formula, .data, special_index)
+  bru_formula <- build_bru_formula(formula, .data, !!special_index)
 
   # add groups to the data
   data_w_groups <- create_hts_data(.data, formula)
