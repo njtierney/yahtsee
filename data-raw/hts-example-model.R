@@ -15,9 +15,16 @@ new_example_model$hts_response <- hts_example_model$hts_response
 new_example_model$hts_terms <- hts_example_model$hts_terms
 new_example_model$names.fixed <- hts_example_model$names.fixed
 new_example_model$.args$family <- hts_example_model$.args$family
+
 new_example_model$summary.fixed <- hts_example_model$summary.fixed
 new_example_model$summary.linear.predictor <- hts_example_model$summary.linear.predictor
 new_example_model$summary.fitted.values <- hts_example_model$summary.fitted.values
+new_example_model$summary.random <- hts_example_model$summary.random
+
+new_example_model$dic <- hts_example_model$dic
+new_example_model$waic <- hts_example_model$waic
+new_example_model$mlik <- hts_example_model$mlik
+new_example_model$cpu.used <- hts_example_model$cpu.used
 
 hts_example_model <- yahtsee:::as_hts_inla(
   new_example_model,
