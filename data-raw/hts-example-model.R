@@ -25,6 +25,8 @@ new_example_model$dic <- hts_example_model$dic
 new_example_model$waic <- hts_example_model$waic
 new_example_model$mlik <- hts_example_model$mlik
 new_example_model$cpu.used <- hts_example_model$cpu.used
+new_example_model$data <- hts_example_model$data
+new_example_model$bru_info <- hts_example_model$bru_info
 
 hts_example_model <- yahtsee:::as_hts_inla(
   new_example_model,

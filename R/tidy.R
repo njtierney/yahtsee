@@ -20,7 +20,7 @@ tidy.hts_inla <- function(x, ...){
     x$summary.fixed,
     .name_repair = "minimal"
     )
-  setNames(
+  stats::setNames(
     object = df,
     nm = c(
       "variable",

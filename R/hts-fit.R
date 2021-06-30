@@ -4,8 +4,11 @@
 #' @param .data a `tsibble`
 #' @param special_index The variable that represents time in your data
 #' @param family character.
+#' @param verbose default TRUE, whether to display message
+#' @param keep_data attach the data used to fit the model to the final
+#'   model object?
 #' @param ... list of options to pass to `inlabru::bru`, see `?inlabru::bru`
-#'     to see these options.
+#'   to see these options.
 #' @return inlabru model
 #'
 #' @details
@@ -34,6 +37,8 @@ fit_hts <- function(formula,
                     .data,
                     special_index,
                     family,
+                    verbose = TRUE,
+                    keep_data = TRUE,
                     ...) {
   test_if_tsibble(.data)
   test_if_formula(formula)
@@ -49,7 +54,9 @@ fit_hts <- function(formula,
   # add groups to the data
   data_w_groups <- create_hts_data(.data, formula)
 
-  cli::cli_process_start("Fitting model with inlabru")
+  if (verbose) {
+    cli::cli_process_start("Fitting model with inlabru")
+  }
   bru_model <- inlabru::bru(
     components = bru_formula,
     family = family,
@@ -58,7 +65,13 @@ fit_hts <- function(formula,
       !!!dots
     )
   )
-  cli::cli_process_done()
+  if (verbose) {
+    cli::cli_process_done()
+  }
+
+  if (keep_data) {
+    bru_model$data <- data_w_groups
+  }
 
   as_hts_inla(bru_model, formula)
 }

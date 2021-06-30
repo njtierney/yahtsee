@@ -5,7 +5,7 @@
 \alias{hts_example_model}
 \title{Example model for use in testing and examples}
 \format{
-An object of class \code{hts_inla} (inherits from \code{list}) of length 13.
+An object of class \code{hts_inla} (inherits from \code{bru}, \code{iinla}, \code{inla}) of length 14.
 }
 \usage{
 data(hts_example_model)

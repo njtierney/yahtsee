@@ -1,10 +1,7 @@
 test_that("as_hts_inla works", {
   expect_identical(
-    class(as_hts_inla("thing")),
-    c("hts_inla", "character")
-  )
-  expect_identical(
-    class(as_hts_inla(lm(speed ~ dist, cars))),
-    c("hts_inla", "lm")
+    class(as_hts_inla(hts_example_model,
+                      pr ~ avg_lower_age + hts(who_subregion, country))),
+    c("hts_inla", "bru", "iinla", "inla")
   )
 })

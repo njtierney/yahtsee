@@ -8,6 +8,8 @@ as_hts_inla(x, formula)
 }
 \arguments{
 \item{x}{model from inlabru}
+
+\item{formula}{formula passed to fit_hts}
 }
 \value{
 hts_inla model
