@@ -11,8 +11,12 @@
 
 \item{...}{extra arguments to pass to \code{tidy()}. Currently unused}
 }
+\value{
+dataframe with column names: "variable", "mean", "sd", and quantiles for 0.025, 0.5, and 0.975, as well as mode and kld
+}
 \description{
-Tidy:  summarise a model's statistical findings
+The \code{tidy()} function provides a data frame of the mean, standard deviation,
+quantiles
 }
 \examples{
 hts_example_model
