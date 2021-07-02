@@ -11,11 +11,13 @@ fitted.hts_inla <- function(object,
                             exponentiate = FALSE,
                             ...){
 
-  model_fit <- object$summary.fitted.values[[fit]]
+  data_nrow <- nrow(object$data)
+  model_fit <- object$summary.fitted.values[[fit]][seq_len(data_nrow)]
 
   if (exponentiate){
     return(exp(model_fit))
   }
 
   model_fit
+
 }
