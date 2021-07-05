@@ -2,19 +2,20 @@
 % Please edit documentation in R/fitted.R
 \name{fitted.hts_inla}
 \alias{fitted.hts_inla}
-\title{Extract fitted values from model object}
+\title{Extract fitted values from \code{hts_inla} model object}
 \usage{
-\method{fitted}{hts_inla}(object, fit = "mean", exponentiate = FALSE, ...)
+\method{fitted}{hts_inla}(object, exponentiate = FALSE, ...)
 }
 \arguments{
 \item{object}{hts_inla object}
 
-\item{fit}{default is "mean". Options are: "mean", "sd", "0.025quant", "0.5quant", "0.975quant", and "mode".}
-
 \item{exponentiate}{default FALSE}
 
-\item{...}{extra arguments. Currently not used}
+\item{...}{extra arguments. Currently not used.}
 }
 \description{
-Extract fitted values from model object
+This returns the fitted
+}
+\examples{
+head(fitted(hts_example_model))
 }
