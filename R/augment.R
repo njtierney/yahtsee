@@ -21,9 +21,9 @@ augment.hts_inla <- function(x,
   passed_newdata <- !is.null(newdata)
 
   if (passed_newdata) {
-      df$.fitted <- inlabru::predict.bru(x,
-                                data = newdata,
-                                ...) %>%
+      df$.fitted <- predict(x,
+                            data = newdata,
+                            ...) %>%
         unname()
 
   # some options for exponentiation?
