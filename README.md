@@ -97,11 +97,36 @@ formula = pr ~ avg_lower_age + Intercept +
       )
 ```
 
+Which would be equivalent to the following INLA code
+
+``` r
+INLA::inla(
+formula = pr ~ avg_lower_age + Intercept + 
+  f(month_num_1, 
+             model = "ar1", 
+             group = .who_region_id,
+             constr = FALSE) + 
+  f(month_num_2, 
+                model = "ar1", 
+                group = .who_subregion_id, 
+                constr = FALSE) + 
+  f(month_num_3, 
+          model = "ar1", 
+          group = .country_id, 
+          constr = FALSE),
+    family = "gaussian",
+    data = malaria_africa_ts,
+    options = list(
+      control.compute = list(config = TRUE),
+      control.predictor = list(compute = TRUE, link = 1)
+      )
+      )
+```
+
 Using `yahtsee`’s `fit_hts` function, we now do not need to think about
 the following:
 
-1.  What to name the random effects (who\_region, who\_subregion,
-    country)
+1.  What to name the random effects (who_region, who_subregion, country)
 2.  Specifying the time component of the ar1 process (`month_num`)
 3.  repeating the “ar1” component for each random effect
 4.  The `group` argument requires a special index variable of a group to
@@ -135,6 +160,12 @@ Specifically we had the following goals:
 
 ``` r
 library(yahtsee)
+#> Loading required package: tsibble
+#> 
+#> Attaching package: 'tsibble'
+#> The following objects are masked from 'package:base':
+#> 
+#>     intersect, setdiff, union
 # for nice table printing
 library(tibble)
 ```
@@ -145,7 +176,7 @@ There are two example datasets.
 
 ``` r
 who_regions
-#> # A tibble: 110 x 4
+#> # A tibble: 110 × 4
 #>    who_region who_subregion country     country_iso_code
 #>    <chr>      <chr>         <chr>       <chr>           
 #>  1 EMRO       EMRO          Afghanistan AFG             
@@ -167,7 +198,8 @@ who_regions
 
 ``` r
 malaria_africa_ts
-#> # A tibble: 1,046 x 15
+#> # A tsibble: 1,046 x 15 [1D]
+#> # Key:       country [46]
 #>    who_region who_subregion country date       month_num positive examined
 #>    <fct>      <fct>         <fct>   <date>         <dbl>    <dbl>    <int>
 #>  1 AFRO       AFRO-W        Angola  1989-06-01       120     15.8       50
@@ -184,3 +216,9 @@ malaria_africa_ts
 #> #   continent_id <fct>, country_id <fct>, year <int>, month <int>,
 #> #   avg_upper_age <dbl>, species <fct>
 ```
+
+## Code of Conduct
+
+Please note that the yahtsee project is released with a [Contributor
+Code of Conduct](http://yahtsee.njtierney.com/CODE_OF_CONDUCT.html). By
+contributing to this project, you agree to abide by its terms.
