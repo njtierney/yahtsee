@@ -70,8 +70,9 @@ We specify the time component at the moment using the `special_index`
 argument (this will be removed later once we resolve a couple of bugs to
 do with the data).
 
-The equivalent model fitted with `inlabru` would look like the
-following:
+The equivalent model fitted with `inlabru` could look like the
+following. (Note that for this code to work you would need to perform
+various data transformations, so this code cannot be run as-is).
 
 ``` r
 inlabru::bru(
@@ -100,8 +101,7 @@ formula = pr ~ avg_lower_age + Intercept +
 Using `yahtsee`’s `fit_hts` function, we now do not need to think about
 the following:
 
-1.  What to name the random effects (who\_region, who\_subregion,
-    country)
+1.  What to name the random effects (who_region, who_subregion, country)
 2.  Specifying the time component of the ar1 process (`month_num`)
 3.  repeating the “ar1” component for each random effect
 4.  The `group` argument requires a special index variable of a group to
@@ -135,6 +135,12 @@ Specifically we had the following goals:
 
 ``` r
 library(yahtsee)
+#> Loading required package: tsibble
+#> 
+#> Attaching package: 'tsibble'
+#> The following objects are masked from 'package:base':
+#> 
+#>     intersect, setdiff, union
 # for nice table printing
 library(tibble)
 ```
@@ -145,7 +151,7 @@ There are two example datasets.
 
 ``` r
 who_regions
-#> # A tibble: 110 x 4
+#> # A tibble: 110 × 4
 #>    who_region who_subregion country     country_iso_code
 #>    <chr>      <chr>         <chr>       <chr>           
 #>  1 EMRO       EMRO          Afghanistan AFG             
@@ -167,7 +173,8 @@ who_regions
 
 ``` r
 malaria_africa_ts
-#> # A tibble: 1,046 x 15
+#> # A tsibble: 1,046 x 15 [1D]
+#> # Key:       country [46]
 #>    who_region who_subregion country date       month_num positive examined
 #>    <fct>      <fct>         <fct>   <date>         <dbl>    <dbl>    <int>
 #>  1 AFRO       AFRO-W        Angola  1989-06-01       120     15.8       50
