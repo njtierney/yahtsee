@@ -19,6 +19,8 @@
 <![endif]-->
 </head>
 <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-article">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -31,18 +33,12 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">yahtsee</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.0.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.0.0.9000</span>
       </span>
     </div>
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
-<li>
-  <a href="../index.html">
-    <span class="fas fa-home fa-lg"></span>
-     
-  </a>
-</li>
 <li>
   <a href="../reference/index.html">Reference</a>
 </li>
@@ -64,7 +60,7 @@
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="https://github.com/njtierney/yahtsee/">
+  <a href="https://github.com/njtierney/yahtsee/" class="external-link">
     <span class="fab fa-github fa-lg"></span>
      
   </a>
@@ -85,7 +81,7 @@
       <h1 data-toc-skip>example-fit-hts</h1>
             
       
-      <small class="dont-index">Source: <a href="https://github.com/njtierney/yahtsee/blob/master/vignettes/example-fit-hts.Rmd"><code>vignettes/example-fit-hts.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/njtierney/yahtsee/blob/HEAD/vignettes/example-fit-hts.Rmd" class="external-link"><code>vignettes/example-fit-hts.Rmd</code></a></small>
       <div class="hidden name"><code>example-fit-hts.Rmd</code></div>
 
     </div>
@@ -93,15 +89,15 @@
     
     
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/njtierney/yahtsee">yahtsee</a></span><span class="op">)</span>
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/njtierney/yahtsee" class="external-link">yahtsee</a></span><span class="op">)</span>
 <span class="co">#&gt; Loading required package: tsibble</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; Attaching package: 'tsibble'</span>
 <span class="co">#&gt; The following objects are masked from 'package:base':</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt;     intersect, setdiff, union</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org">ggplot2</a></span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org">dplyr</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; Attaching package: 'dplyr'</span>
 <span class="co">#&gt; The following objects are masked from 'package:stats':</span>
@@ -110,63 +106,64 @@
 <span class="co">#&gt; The following objects are masked from 'package:base':</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt;     intersect, setdiff, setequal, union</span></code></pre></div>
-<div id="the-data" class="section level2">
-<h2 class="hasAnchor">
-<a href="#the-data" class="anchor"></a>The data</h2>
+<div class="section level2">
+<h2 id="the-data">The data<a class="anchor" aria-label="anchor" href="#the-data"></a>
+</h2>
 <p>For this model we are going to fit a very simple model using some summarised data from the <code>malariaAtlas</code> R package, <code>malaria_africa_ts</code>:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">malaria_africa_ts</span>
-<span class="co">#&gt; # A tsibble: 1,046 x 15 [1D]</span>
-<span class="co">#&gt; # Key:       country [46]</span>
+<span class="co">#&gt; <span style="color: #949494;"># A tsibble: 1,046 x 15 [1D]</span></span>
+<span class="co">#&gt; <span style="color: #949494;"># Key:       country [46]</span></span>
 <span class="co">#&gt;    who_region who_subregion country date       month_num positive examined</span>
-<span class="co">#&gt;    &lt;fct&gt;      &lt;fct&gt;         &lt;fct&gt;   &lt;date&gt;         &lt;dbl&gt;    &lt;dbl&gt;    &lt;int&gt;</span>
-<span class="co">#&gt;  1 AFRO       AFRO-W        Angola  1989-06-01       120     15.8       50</span>
-<span class="co">#&gt;  2 AFRO       AFRO-W        Angola  2005-11-01       372     82        111</span>
-<span class="co">#&gt;  3 AFRO       AFRO-W        Angola  2006-04-01       300    102        197</span>
-<span class="co">#&gt;  4 AFRO       AFRO-W        Angola  2006-11-01       384     41        347</span>
-<span class="co">#&gt;  5 AFRO       AFRO-W        Angola  2006-12-01       396    173        734</span>
-<span class="co">#&gt;  6 AFRO       AFRO-W        Angola  2007-01-01       276    216        828</span>
-<span class="co">#&gt;  7 AFRO       AFRO-W        Angola  2007-02-01       288     42         71</span>
-<span class="co">#&gt;  8 AFRO       AFRO-W        Angola  2007-03-01       300    119        448</span>
-<span class="co">#&gt;  9 AFRO       AFRO-W        Angola  2011-01-01       324      1        239</span>
-<span class="co">#&gt; 10 AFRO       AFRO-W        Angola  2011-02-01       336    148       1132</span>
-<span class="co">#&gt; # … with 1,036 more rows, and 8 more variables: pr &lt;dbl&gt;, avg_lower_age &lt;dbl&gt;,</span>
-<span class="co">#&gt; #   continent_id &lt;fct&gt;, country_id &lt;fct&gt;, year &lt;int&gt;, month &lt;int&gt;,</span>
-<span class="co">#&gt; #   avg_upper_age &lt;dbl&gt;, species &lt;fct&gt;</span></code></pre></div>
+<span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span>         <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>         <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;int&gt;</span></span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span> AFRO       AFRO-W        Angola  1989-06-01       120     15.8       50</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span> AFRO       AFRO-W        Angola  2005-11-01       372     82        111</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span> AFRO       AFRO-W        Angola  2006-04-01       300    102        197</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span> AFRO       AFRO-W        Angola  2006-11-01       384     41        347</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span> AFRO       AFRO-W        Angola  2006-12-01       396    173        734</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span> AFRO       AFRO-W        Angola  2007-01-01       276    216        828</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span> AFRO       AFRO-W        Angola  2007-02-01       288     42         71</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> AFRO       AFRO-W        Angola  2007-03-01       300    119        448</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> AFRO       AFRO-W        Angola  2011-01-01       324      1        239</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">10</span> AFRO       AFRO-W        Angola  2011-02-01       336    148       <span style="text-decoration: underline;">1</span>132</span>
+<span class="co">#&gt; <span style="color: #949494;"># … with 1,036 more rows, and 8 more variables: pr &lt;dbl&gt;, avg_lower_age &lt;dbl&gt;,</span></span>
+<span class="co">#&gt; <span style="color: #949494;">#   continent_id &lt;fct&gt;, country_id &lt;fct&gt;, year &lt;int&gt;, month &lt;int&gt;,</span></span>
+<span class="co">#&gt; <span style="color: #949494;">#   avg_upper_age &lt;dbl&gt;, species &lt;fct&gt;</span></span></code></pre></div>
 <p>This data has the following features we are interested in:</p>
 <ul>
 <li>hierarchical structure (countries within who subregion, within region)</li>
 <li>Positive rate measurements recorded over time for these areas (positive rate given by the number of positive cases divided by the number of cases examined).</li>
 </ul>
 <p>(Note that we are still getting some more covariates for this data.)</p>
-<div id="tsibble-data" class="section level3">
-<h3 class="hasAnchor">
-<a href="#tsibble-data" class="anchor"></a><code>tsibble</code> data</h3>
+<div class="section level3">
+<h3 id="tsibble-data">
+<code>tsibble</code> data<a class="anchor" aria-label="anchor" href="#tsibble-data"></a>
+</h3>
 <p>This data is a <code>tsibble</code> (the “ts” is pronounced like the end of “ba<strong>ts</strong>”).</p>
 <p>This is a speical time series aware table, that knows what elements identify the individual time components, in this case, country, and what the time index is, in this case, <code>date</code>.</p>
 <p>We use a <code>tsibble</code> because it stores this time (referred to as an “index”) and group (referred to as a “key”) information, which we can use inside our modelling software.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tsibble.tidyverts.org">tsibble</a></span><span class="op">)</span>
-<span class="fu"><a href="https://tsibble.tidyverts.org/reference/key.html">key</a></span><span class="op">(</span><span class="va">malaria_africa_ts</span><span class="op">)</span>
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://tsibble.tidyverts.org" class="external-link">tsibble</a></span><span class="op">)</span>
+<span class="fu"><a href="https://tsibble.tidyverts.org/reference/key.html" class="external-link">key</a></span><span class="op">(</span><span class="va">malaria_africa_ts</span><span class="op">)</span>
 <span class="co">#&gt; [[1]]</span>
 <span class="co">#&gt; country</span>
-<span class="fu"><a href="https://tsibble.tidyverts.org/reference/index-rd.html">index</a></span><span class="op">(</span><span class="va">malaria_africa_ts</span><span class="op">)</span>
+<span class="fu"><a href="https://tsibble.tidyverts.org/reference/index-rd.html" class="external-link">index</a></span><span class="op">(</span><span class="va">malaria_africa_ts</span><span class="op">)</span>
 <span class="co">#&gt; date</span></code></pre></div>
 </div>
 </div>
-<div id="modelling" class="section level2">
-<h2 class="hasAnchor">
-<a href="#modelling" class="anchor"></a>Modelling</h2>
+<div class="section level2">
+<h2 id="modelling">Modelling<a class="anchor" aria-label="anchor" href="#modelling"></a>
+</h2>
 <p>Let’s say we want to model the pr over time. Here is a plot of the pr over time, where each line is a country, and facets represent the different who subregions:</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">malaria_africa_ts</span>,
-       <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">date</span>,
+<code class="sourceCode R"><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">malaria_africa_ts</span>,
+       <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">date</span>,
            y <span class="op">=</span> <span class="va">pr</span>,
            group <span class="op">=</span> <span class="va">country</span>,
            colour <span class="op">=</span> <span class="va">who_subregion</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> 
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/facet_wrap.html">facet_wrap</a></span><span class="op">(</span><span class="op">~</span><span class="va">who_subregion</span><span class="op">)</span> <span class="op">+</span> 
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>legend.position <span class="op">=</span> <span class="st">"none"</span><span class="op">)</span></code></pre></div>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html" class="external-link">geom_line</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/facet_wrap.html" class="external-link">facet_wrap</a></span><span class="op">(</span><span class="op">~</span><span class="va">who_subregion</span><span class="op">)</span> <span class="op">+</span> 
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html" class="external-link">theme</a></span><span class="op">(</span>legend.position <span class="op">=</span> <span class="st">"none"</span><span class="op">)</span></code></pre></div>
 <p><img src="example-fit-hts_files/figure-html/plot-data-1.png" width="700"></p>
 <p>Let’s create a simple model that has fixed effect of lower age. We add a AR1 process for each of these subregions using the <code>hts()</code> component in the formula. Here, the inputs arethe levels of hierarchy, in order of decreasing size:</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
@@ -183,7 +180,7 @@
 <span class="op">)</span></code></pre></div>
 <p>The equivalent model fitted with <code>inlabru</code> would look like the following:</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">inlabru</span><span class="fu">::</span><span class="fu"><a href="https://inlabru-org.github.io/inlabru/reference/bru.html">bru</a></span><span class="op">(</span>
+<code class="sourceCode R"><span class="fu">inlabru</span><span class="fu">::</span><span class="fu"><a href="https://inlabru-org.github.io/inlabru/reference/bru.html" class="external-link">bru</a></span><span class="op">(</span>
 formula <span class="op">=</span> <span class="va">pr</span> <span class="op">~</span> <span class="va">avg_lower_age</span> <span class="op">+</span> <span class="va">Intercept</span> <span class="op">+</span> 
   <span class="fu">who_region</span><span class="op">(</span><span class="va">month_num</span>, 
              model <span class="op">=</span> <span class="st">"ar1"</span>, 
@@ -199,9 +196,9 @@ formula <span class="op">=</span> <span class="va">pr</span> <span class="op">~<
           constr <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>,
     family <span class="op">=</span> <span class="st">"gaussian"</span>,
     data <span class="op">=</span> <span class="va">malaria_africa_ts</span>,
-    options <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>
-      control.compute <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>config <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>,
-      control.predictor <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>compute <span class="op">=</span> <span class="cn">TRUE</span>, link <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>
+    options <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>
+      control.compute <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>config <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>,
+      control.predictor <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>compute <span class="op">=</span> <span class="cn">TRUE</span>, link <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>
       <span class="op">)</span>
       <span class="op">)</span></code></pre></div>
 <p>Here are some of the extra considerations that need to be made:</p>
@@ -213,16 +210,16 @@ formula <span class="op">=</span> <span class="va">pr</span> <span class="op">~<
 <li>Additional options passed to <code>inlabru</code> in options to help get the appropriate data back.</li>
 </ol>
 </div>
-<div id="proposed-workflow" class="section level1">
-<h1 class="hasAnchor">
-<a href="#proposed-workflow" class="anchor"></a>Proposed workflow</h1>
+<div class="section level1">
+<h1 id="proposed-workflow">Proposed workflow<a class="anchor" aria-label="anchor" href="#proposed-workflow"></a>
+</h1>
 <p>The proposed workflow of this type of model is as follows:</p>
 <ol style="list-style-type: decimal">
 <li>Specify data as a <code>tsibble</code> object:</li>
 </ol>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tsibble.tidyverts.org">tsibble</a></span><span class="op">)</span>
-<span class="va">malaria_africa_ts</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tsibble.tidyverts.org/reference/as-tsibble.html">as_tsibble</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">malaria_africa</span>,
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://tsibble.tidyverts.org" class="external-link">tsibble</a></span><span class="op">)</span>
+<span class="va">malaria_africa_ts</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tsibble.tidyverts.org/reference/as-tsibble.html" class="external-link">as_tsibble</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">malaria_africa</span>,
                                 key <span class="op">=</span> <span class="va">country</span>,
                                 index <span class="op">=</span> <span class="va">date</span><span class="op">)</span></code></pre></div>
 <ol start="2" style="list-style-type: decimal">
@@ -240,15 +237,15 @@ formula <span class="op">=</span> <span class="va">pr</span> <span class="op">~<
 </ol>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">diagnostics</span><span class="op">(</span><span class="va">model_hts</span><span class="op">)</span>
-<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/autoplot.html">autoplot</a></span><span class="op">(</span><span class="va">model_hts</span><span class="op">)</span></code></pre></div>
+<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/autoplot.html" class="external-link">autoplot</a></span><span class="op">(</span><span class="va">model_hts</span><span class="op">)</span></code></pre></div>
 <ol start="4" style="list-style-type: decimal">
 <li>Make prediction data</li>
 </ol>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">date_range</span> <span class="op">&lt;-</span> <span class="fu">clock</span><span class="fu">::</span><span class="fu"><a href="https://clock.r-lib.org/reference/date_build.html">date_build</a></span><span class="op">(</span><span class="fl">2019</span>, <span class="fl">2</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">5</span><span class="op">)</span>
+<code class="sourceCode R"><span class="va">date_range</span> <span class="op">&lt;-</span> <span class="fu">clock</span><span class="fu">::</span><span class="fu"><a href="https://clock.r-lib.org/reference/date_build.html" class="external-link">date_build</a></span><span class="op">(</span><span class="fl">2019</span>, <span class="fl">2</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">5</span><span class="op">)</span>
 <span class="va">date_range</span>
 <span class="co">#&gt; [1] "2019-02-01" "2019-02-02" "2019-02-03" "2019-02-04" "2019-02-05"</span>
-<span class="va">countries</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Ethiopia"</span>, <span class="st">"Tanzania"</span><span class="op">)</span>
+<span class="va">countries</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Ethiopia"</span>, <span class="st">"Tanzania"</span><span class="op">)</span>
 <span class="va">countries</span>
 <span class="co">#&gt; [1] "Ethiopia" "Tanzania"</span>
 <span class="va">df_pred</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/prediction_data.html">prediction_data</a></span><span class="op">(</span>
@@ -258,26 +255,26 @@ formula <span class="op">=</span> <span class="va">pr</span> <span class="op">~<
 <span class="op">)</span>
 
 <span class="va">df_pred</span>
-<span class="co">#&gt; # A tsibble: 10 x 2 [1D]</span>
-<span class="co">#&gt; # Key:       country [2]</span>
+<span class="co">#&gt; <span style="color: #949494;"># A tsibble: 10 x 2 [1D]</span></span>
+<span class="co">#&gt; <span style="color: #949494;"># Key:       country [2]</span></span>
 <span class="co">#&gt;    country  date      </span>
-<span class="co">#&gt;    &lt;chr&gt;    &lt;date&gt;    </span>
-<span class="co">#&gt;  1 Ethiopia 2019-02-01</span>
-<span class="co">#&gt;  2 Ethiopia 2019-02-02</span>
-<span class="co">#&gt;  3 Ethiopia 2019-02-03</span>
-<span class="co">#&gt;  4 Ethiopia 2019-02-04</span>
-<span class="co">#&gt;  5 Ethiopia 2019-02-05</span>
-<span class="co">#&gt;  6 Tanzania 2019-02-01</span>
-<span class="co">#&gt;  7 Tanzania 2019-02-02</span>
-<span class="co">#&gt;  8 Tanzania 2019-02-03</span>
-<span class="co">#&gt;  9 Tanzania 2019-02-04</span>
-<span class="co">#&gt; 10 Tanzania 2019-02-05</span></code></pre></div>
+<span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>    </span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span> Ethiopia 2019-02-01</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span> Ethiopia 2019-02-02</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span> Ethiopia 2019-02-03</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span> Ethiopia 2019-02-04</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span> Ethiopia 2019-02-05</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span> Tanzania 2019-02-01</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span> Tanzania 2019-02-02</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> Tanzania 2019-02-03</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> Tanzania 2019-02-04</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">10</span> Tanzania 2019-02-05</span></code></pre></div>
 <ol start="5" style="list-style-type: decimal">
 <li>Post hoc prediction from the model to add uncertainty information</li>
 </ol>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># post-hoc prediction function - with options for presenting the uncertainty</span>
-<span class="va">pred</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/predict.html">predict</a></span><span class="op">(</span><span class="va">m</span>, <span class="va">df_pred</span>, se.fit <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
+<span class="va">pred</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/predict.html" class="external-link">predict</a></span><span class="op">(</span><span class="va">m</span>, <span class="va">df_pred</span>, se.fit <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
 </div>
   </div>
 
@@ -292,11 +289,13 @@ formula <span class="op">=</span> <span class="va">pr</span> <span class="op">~<
 
 
       <footer><div class="copyright">
-  <p>Developed by Nicholas Tierney.</p>
+  <p></p>
+<p>Developed by Nicholas Tierney.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
+  <p></p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.1.</p>
 </div>
 
       </footer>
@@ -304,6 +303,8 @@ formula <span class="op">=</span> <span class="va">pr</span> <span class="op">~<
 
   
 
+
+  
 
   </body>
 </html>

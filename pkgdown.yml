@@ -1,10 +1,10 @@
 pandoc: 2.7.3
-pkgdown: 1.6.1
+pkgdown: 2.0.1
 pkgdown_sha: ~
 articles:
   example-fit-hts: example-fit-hts.html
-last_built: 2021-09-30T05:07Z
+last_built: 2022-01-10T04:52Z
 urls:
-  reference: http://yahtsee.njtierney.com//reference
-  article: http://yahtsee.njtierney.com//articles
+  reference: http://yahtsee.njtierney.com/reference
+  article: http://yahtsee.njtierney.com/articles
 

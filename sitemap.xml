@@ -1,51 +1,72 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>http://yahtsee.njtierney.com//index.html</loc>
+    <loc>http://yahtsee.njtierney.com/404.html</loc>
   </url>
   <url>
-    <loc>http://yahtsee.njtierney.com//reference/add_group_id.html</loc>
+    <loc>http://yahtsee.njtierney.com/LICENSE-text.html</loc>
   </url>
   <url>
-    <loc>http://yahtsee.njtierney.com//reference/as_hts_inla.html</loc>
+    <loc>http://yahtsee.njtierney.com/LICENSE.html</loc>
   </url>
   <url>
-    <loc>http://yahtsee.njtierney.com//reference/available_likelihoods.html</loc>
+    <loc>http://yahtsee.njtierney.com/articles/example-fit-hts.html</loc>
   </url>
   <url>
-    <loc>http://yahtsee.njtierney.com//reference/build_bru_formula.html</loc>
+    <loc>http://yahtsee.njtierney.com/articles/index.html</loc>
   </url>
   <url>
-    <loc>http://yahtsee.njtierney.com//reference/create_hts_data.html</loc>
+    <loc>http://yahtsee.njtierney.com/authors.html</loc>
   </url>
   <url>
-    <loc>http://yahtsee.njtierney.com//reference/fit_hts.html</loc>
+    <loc>http://yahtsee.njtierney.com/index.html</loc>
   </url>
   <url>
-    <loc>http://yahtsee.njtierney.com//reference/hts_builder.html</loc>
+    <loc>http://yahtsee.njtierney.com/news/index.html</loc>
   </url>
   <url>
-    <loc>http://yahtsee.njtierney.com//reference/install_yahtsee_deps.html</loc>
+    <loc>http://yahtsee.njtierney.com/reference/add_group_id.html</loc>
   </url>
   <url>
-    <loc>http://yahtsee.njtierney.com//reference/malaria_africa_ts.html</loc>
+    <loc>http://yahtsee.njtierney.com/reference/as_hts_inla.html</loc>
   </url>
   <url>
-    <loc>http://yahtsee.njtierney.com//reference/pipe.html</loc>
+    <loc>http://yahtsee.njtierney.com/reference/available_likelihoods.html</loc>
   </url>
   <url>
-    <loc>http://yahtsee.njtierney.com//reference/prediction_data.html</loc>
+    <loc>http://yahtsee.njtierney.com/reference/build_bru_formula.html</loc>
   </url>
   <url>
-    <loc>http://yahtsee.njtierney.com//reference/reexports.html</loc>
+    <loc>http://yahtsee.njtierney.com/reference/create_hts_data.html</loc>
   </url>
   <url>
-    <loc>http://yahtsee.njtierney.com//reference/who_regions.html</loc>
+    <loc>http://yahtsee.njtierney.com/reference/fit_hts.html</loc>
   </url>
   <url>
-    <loc>http://yahtsee.njtierney.com//reference/yahtsee-package.html</loc>
+    <loc>http://yahtsee.njtierney.com/reference/hts_builder.html</loc>
   </url>
   <url>
-    <loc>http://yahtsee.njtierney.com//articles/example-fit-hts.html</loc>
+    <loc>http://yahtsee.njtierney.com/reference/index.html</loc>
+  </url>
+  <url>
+    <loc>http://yahtsee.njtierney.com/reference/install_yahtsee_deps.html</loc>
+  </url>
+  <url>
+    <loc>http://yahtsee.njtierney.com/reference/malaria_africa_ts.html</loc>
+  </url>
+  <url>
+    <loc>http://yahtsee.njtierney.com/reference/pipe.html</loc>
+  </url>
+  <url>
+    <loc>http://yahtsee.njtierney.com/reference/prediction_data.html</loc>
+  </url>
+  <url>
+    <loc>http://yahtsee.njtierney.com/reference/reexports.html</loc>
+  </url>
+  <url>
+    <loc>http://yahtsee.njtierney.com/reference/who_regions.html</loc>
+  </url>
+  <url>
+    <loc>http://yahtsee.njtierney.com/reference/yahtsee-package.html</loc>
   </url>
 </urlset>

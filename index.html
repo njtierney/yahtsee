@@ -20,6 +20,8 @@
 <![endif]-->
 </head>
 <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-home">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -32,18 +34,12 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">yahtsee</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.0.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.0.0.9000</span>
       </span>
     </div>
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
-<li>
-  <a href="index.html">
-    <span class="fas fa-home fa-lg"></span>
-     
-  </a>
-</li>
 <li>
   <a href="reference/index.html">Reference</a>
 </li>
@@ -65,7 +61,7 @@
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="https://github.com/njtierney/yahtsee/">
+  <a href="https://github.com/njtierney/yahtsee/" class="external-link">
     <span class="fab fa-github fa-lg"></span>
      
   </a>
@@ -82,40 +78,40 @@
 
       </header><div class="row">
   <div class="contents col-md-9">
-<div id="yahtsee" class="section level1">
-<div class="page-header"><h1 class="hasAnchor">
-<a href="#yahtsee" class="anchor"></a>yahtsee</h1></div>
+<div class="section level1">
+<div class="page-header"><h1 id="yahtsee">yahtsee<a class="anchor" aria-label="anchor" href="#yahtsee"></a>
+</h1></div>
 <!-- badges: start -->
 
 <p>The goal of yahtsee is to provide tools around fitting hierarchical time series models for data commonly found in malaria.</p>
-<div id="installation" class="section level2">
-<h2 class="hasAnchor">
-<a href="#installation" class="anchor"></a>Installation</h2>
+<div class="section level2">
+<h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
+</h2>
 <p>You can install the released version of yahtsee from GitHub with:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># install.packages("remotes")</span>
-<span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html">install_github</a></span><span class="op">(</span><span class="st">"njtierney/yahtsee"</span><span class="op">)</span></code></pre></div>
-<div id="installing-inla" class="section level3">
-<h3 class="hasAnchor">
-<a href="#installing-inla" class="anchor"></a>Installing INLA</h3>
+<span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"njtierney/yahtsee"</span><span class="op">)</span></code></pre></div>
+<div class="section level3">
+<h3 id="installing-inla">Installing INLA<a class="anchor" aria-label="anchor" href="#installing-inla"></a>
+</h3>
 <p>This package requires <code>INLA</code>, to install it you can run:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="reference/install_yahtsee_deps.html">install_yahtsee_deps</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
 <p>Or alternatively:</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/options.html">options</a></span><span class="op">(</span>
-  repos <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span>
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">options</a></span><span class="op">(</span>
+  repos <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span>
     INLA <span class="op">=</span> <span class="st">"https://inla.r-inla-download.org/R/testing"</span>,
     CRAN <span class="op">=</span> <span class="st">"https://cloud.r-project.org/"</span>
     <span class="op">)</span>
 <span class="op">)</span>
 
-<span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"INLA"</span><span class="op">)</span></code></pre></div>
+<span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"INLA"</span><span class="op">)</span></code></pre></div>
 </div>
 </div>
-<div id="example-model" class="section level2">
-<h2 class="hasAnchor">
-<a href="#example-model" class="anchor"></a>Example model</h2>
+<div class="section level2">
+<h2 id="example-model">Example model<a class="anchor" aria-label="anchor" href="#example-model"></a>
+</h2>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">m</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/fit_hts.html">fit_hts</a></span><span class="op">(</span>
     <span class="co"># inputs are  the levels of hierarchy, in order of decreasing size</span>
@@ -127,9 +123,9 @@
 <p>This is a model with an AR1 process for each of these subregions using the <code>hts()</code> component in the formula. The inputs are the levels of hierarchy, in order of decreasing size.</p>
 <p>We then provide the data, likelihood family (in this case “gaussian”, but all INLA likelihoods are available).</p>
 <p>We specify the time component at the moment using the <code>special_index</code> argument (this will be removed later once we resolve a couple of bugs to do with the data).</p>
-<p>The equivalent model fitted with <code>inlabru</code> would look like the following:</p>
+<p>The equivalent model fitted with <code>inlabru</code> could look like the following. (Note that for this code to work you would need to perform various data transformations, so this code cannot be run as-is).</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">inlabru</span><span class="fu">::</span><span class="fu"><a href="https://inlabru-org.github.io/inlabru/reference/bru.html">bru</a></span><span class="op">(</span>
+<code class="sourceCode R"><span class="fu">inlabru</span><span class="fu">::</span><span class="fu"><a href="https://inlabru-org.github.io/inlabru/reference/bru.html" class="external-link">bru</a></span><span class="op">(</span>
 formula <span class="op">=</span> <span class="va">pr</span> <span class="op">~</span> <span class="va">avg_lower_age</span> <span class="op">+</span> <span class="va">Intercept</span> <span class="op">+</span> 
   <span class="fu">who_region</span><span class="op">(</span><span class="va">month_num</span>, 
              model <span class="op">=</span> <span class="st">"ar1"</span>, 
@@ -145,13 +141,13 @@ formula <span class="op">=</span> <span class="va">pr</span> <span class="op">~<
           constr <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>,
     family <span class="op">=</span> <span class="st">"gaussian"</span>,
     data <span class="op">=</span> <span class="va">malaria_africa_ts</span>,
-    options <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>
-      control.compute <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>config <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>,
-      control.predictor <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>compute <span class="op">=</span> <span class="cn">TRUE</span>, link <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>
+    options <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>
+      control.compute <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>config <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>,
+      control.predictor <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>compute <span class="op">=</span> <span class="cn">TRUE</span>, link <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>
       <span class="op">)</span>
       <span class="op">)</span></code></pre></div>
 <p>Using <code>yahtsee</code>’s <code>fit_hts</code> function, we now do not need to think about the following:</p>
-<ol>
+<ol style="list-style-type: decimal">
 <li>What to name the random effects (who_region, who_subregion, country)</li>
 <li>Specifying the time component of the ar1 process (<code>month_num</code>)</li>
 <li>repeating the “ar1” component for each random effect</li>
@@ -159,9 +155,9 @@ formula <span class="op">=</span> <span class="va">pr</span> <span class="op">~<
 <li>Additional options passed to <code>inlabru</code> in options to help get the appropriate data back.</li>
 </ol>
 </div>
-<div id="motivation" class="section level2">
-<h2 class="hasAnchor">
-<a href="#motivation" class="anchor"></a>Motivation</h2>
+<div class="section level2">
+<h2 id="motivation">Motivation<a class="anchor" aria-label="anchor" href="#motivation"></a>
+</h2>
 <p>This package was built to help make is simpler to create specific type of hierarchical time series models, for modelling packages like <code>INLA</code>, <code>inlabru</code>, and <code>mgcv</code>.</p>
 <p>Specifically we had the following goals:</p>
 <ul>
@@ -178,21 +174,27 @@ formula <span class="op">=</span> <span class="va">pr</span> <span class="op">~<
 </li>
 </ul>
 </div>
-<div id="example-data" class="section level2">
-<h2 class="hasAnchor">
-<a href="#example-data" class="anchor"></a>Example data</h2>
+<div class="section level2">
+<h2 id="example-data">Example data<a class="anchor" aria-label="anchor" href="#example-data"></a>
+</h2>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/njtierney/yahtsee">yahtsee</a></span><span class="op">)</span>
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/njtierney/yahtsee" class="external-link">yahtsee</a></span><span class="op">)</span>
+<span class="co">#&gt; Loading required package: tsibble</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Attaching package: 'tsibble'</span>
+<span class="co">#&gt; The following objects are masked from 'package:base':</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt;     intersect, setdiff, union</span>
 <span class="co"># for nice table printing</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tibble.tidyverse.org/">tibble</a></span><span class="op">)</span></code></pre></div>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://tibble.tidyverse.org/" class="external-link">tibble</a></span><span class="op">)</span></code></pre></div>
 <p>There are two example datasets.</p>
-<ol>
+<ol style="list-style-type: decimal">
 <li>
 <code>who_regions</code>, containing region information from WHO database</li>
 </ol>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">who_regions</span>
-<span class="co">#&gt; # A tibble: 110 x 4</span>
+<span class="co">#&gt; # A tibble: 110 × 4</span>
 <span class="co">#&gt;    who_region who_subregion country     country_iso_code</span>
 <span class="co">#&gt;    &lt;chr&gt;      &lt;chr&gt;         &lt;chr&gt;       &lt;chr&gt;           </span>
 <span class="co">#&gt;  1 EMRO       EMRO          Afghanistan AFG             </span>
@@ -206,14 +208,15 @@ formula <span class="op">=</span> <span class="va">pr</span> <span class="op">~<
 <span class="co">#&gt;  9 AFRO       AFRO-C        Benin       BEN             </span>
 <span class="co">#&gt; 10 SEARO      SEARO         Bhutan      BTN             </span>
 <span class="co">#&gt; # … with 100 more rows</span></code></pre></div>
-<ol>
+<ol start="2" style="list-style-type: decimal">
 <li>
-<code>malaria_africa_ts</code> - containing malaria prevalence data, extracted using the <code>malariaAtlas</code> R package - <a href="https://cran.r-project.org/web/packages/malariaAtlas/vignettes/overview.html" class="uri">https://cran.r-project.org/web/packages/malariaAtlas/vignettes/overview.html</a>
+<code>malaria_africa_ts</code> - containing malaria prevalence data, extracted using the <code>malariaAtlas</code> R package - <a href="https://cran.r-project.org/web/packages/malariaAtlas/vignettes/overview.html" class="external-link uri">https://cran.r-project.org/web/packages/malariaAtlas/vignettes/overview.html</a>
 </li>
 </ol>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">malaria_africa_ts</span>
-<span class="co">#&gt; # A tibble: 1,046 x 15</span>
+<span class="co">#&gt; # A tsibble: 1,046 x 15 [1D]</span>
+<span class="co">#&gt; # Key:       country [46]</span>
 <span class="co">#&gt;    who_region who_subregion country date       month_num positive examined</span>
 <span class="co">#&gt;    &lt;fct&gt;      &lt;fct&gt;         &lt;fct&gt;   &lt;date&gt;         &lt;dbl&gt;    &lt;dbl&gt;    &lt;int&gt;</span>
 <span class="co">#&gt;  1 AFRO       AFRO-W        Angola  1989-06-01       120     15.8       50</span>
@@ -235,49 +238,59 @@ formula <span class="op">=</span> <span class="va">pr</span> <span class="op">~<
 
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <div class="links">
-<h2>Links</h2>
+<h2 data-toc-skip>Links</h2>
 <ul class="list-unstyled">
-<li>Browse source code at <br><a href="https://github.com/njtierney/yahtsee/">https://​github.com/​njtierney/​yahtsee/​</a>
-</li>
-<li>Report a bug at <br><a href="https://github.com/njtierney/yahtsee/issues">https://​github.com/​njtierney/​yahtsee/​issues</a>
-</li>
-<li>Learn more at <br><a href="https://github.com/njtierney/yahtsee">https://​github.com/​njtierney/​yahtsee</a>
-</li>
-</ul>
-</div>
-<div class="license">
-<h2>License</h2>
-<ul class="list-unstyled">
-<li><a href="LICENSE.html">Full license</a></li>
-<li><small><a href="https://opensource.org/licenses/mit-license.php">MIT</a> + file <a href="LICENSE-text.html">LICENSE</a></small></li>
-</ul>
-</div>
-<div class="developers">
-<h2>Developers</h2>
-<ul class="list-unstyled">
-<li>Nicholas Tierney <br><small class="roles"> Author, maintainer </small> <a href="https://orcid.org/https://orcid.org/0000-0003-1460-8722" target="orcid.widget" aria-label="ORCID"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a> </li>
+<li><a href="https://github.com/njtierney/yahtsee/" class="external-link">Browse source code</a></li>
+<li><a href="https://github.com/njtierney/yahtsee/issues" class="external-link">Report a bug</a></li>
+<li><a href="https://github.com/njtierney/yahtsee" class="external-link">Learn more</a></li>
 </ul>
 </div>
 
-  <div class="dev-status">
-<h2>Dev status</h2>
+<div class="license">
+<h2 data-toc-skip>License</h2>
 <ul class="list-unstyled">
-<li><a href="https://lifecycle.r-lib.org/articles/stages.html#experimental"><img src="https://img.shields.io/badge/lifecycle-experimental-orange.svg" alt="Lifecycle: experimental"></a></li>
-<li><a href="https://CRAN.R-project.org/package=yahtsee"><img src="https://www.r-pkg.org/badges/version/yahtsee" alt="CRAN status"></a></li>
-<li><a href="https://github.com/njtierney/yahtsee/actions"><img src="https://github.com/njtierney/yahtsee/workflows/R-CMD-check/badge.svg" alt="R-CMD-check"></a></li>
-<li><a href="https://codecov.io/gh/njtierney/yahtsee?branch=main"><img src="https://codecov.io/gh/njtierney/yahtsee/branch/main/graph/badge.svg" alt="Codecov test coverage"></a></li>
+<li><a href="LICENSE.html">Full license</a></li>
+<li><small><a href="https://opensource.org/licenses/mit-license.php" class="external-link">MIT</a> + file <a href="LICENSE-text.html">LICENSE</a></small></li>
 </ul>
 </div>
+
+
+<div class="citation">
+<h2 data-toc-skip>Citation</h2>
+<ul class="list-unstyled">
+<li><a href="authors.html#citation">Citing yahtsee</a></li>
+</ul>
 </div>
+
+<div class="developers">
+<h2 data-toc-skip>Developers</h2>
+<ul class="list-unstyled">
+<li>Nicholas Tierney <br><small class="roles"> Author, maintainer </small> <a href="https://orcid.org/https://orcid.org/0000-0003-1460-8722" target="orcid.widget" aria-label="ORCID" class="external-link"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a> </li>
+</ul>
+</div>
+
+<div class="dev-status">
+<h2 data-toc-skip>Dev status</h2>
+<ul class="list-unstyled">
+<li><a href="https://lifecycle.r-lib.org/articles/stages.html#experimental" class="external-link"><img src="https://img.shields.io/badge/lifecycle-experimental-orange.svg" alt="Lifecycle: experimental"></a></li>
+<li><a href="https://CRAN.R-project.org/package=yahtsee" class="external-link"><img src="https://www.r-pkg.org/badges/version/yahtsee" alt="CRAN status"></a></li>
+<li><a href="https://github.com/njtierney/yahtsee/actions" class="external-link"><img src="https://github.com/njtierney/yahtsee/workflows/R-CMD-check/badge.svg" alt="R-CMD-check"></a></li>
+<li><a href="https://codecov.io/gh/njtierney/yahtsee?branch=main" class="external-link"><img src="https://codecov.io/gh/njtierney/yahtsee/branch/main/graph/badge.svg" alt="Codecov test coverage"></a></li>
+</ul>
+</div>
+
+  </div>
 </div>
 
 
       <footer><div class="copyright">
-  <p>Developed by Nicholas Tierney.</p>
+  <p></p>
+<p>Developed by Nicholas Tierney.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
+  <p></p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.1.</p>
 </div>
 
       </footer>
@@ -285,6 +298,8 @@ formula <span class="op">=</span> <span class="va">pr</span> <span class="op">~<
 
   
 
+
+  
 
   </body>
 </html>
