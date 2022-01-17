@@ -31,7 +31,8 @@ Imports:
     clock,
     tidyr,
     lifecycle,
-    formula.tools
+    formula.tools,
+    generics
 Suggests: 
     ggplot2,
     covr,

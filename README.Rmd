@@ -99,6 +99,32 @@ formula = pr ~ avg_lower_age + Intercept +
       )
 ```
 
+Which would be equivalent to the following INLA code
+
+```r
+INLA::inla(
+formula = pr ~ avg_lower_age + Intercept + 
+  f(month_num_1, 
+             model = "ar1", 
+             group = .who_region_id,
+             constr = FALSE) + 
+  f(month_num_2, 
+                model = "ar1", 
+                group = .who_subregion_id, 
+                constr = FALSE) + 
+  f(month_num_3, 
+          model = "ar1", 
+          group = .country_id, 
+          constr = FALSE),
+    family = "gaussian",
+    data = malaria_africa_ts,
+    options = list(
+      control.compute = list(config = TRUE),
+      control.predictor = list(compute = TRUE, link = 1)
+      )
+      )
+```
+
 Using `yahtsee`'s `fit_hts` function, we now do not need to think about the following:
 
 1. What to name the random effects (who_region, who_subregion, country)
@@ -143,3 +169,7 @@ who_regions
 ```{r malaria-africa-ts}
 malaria_africa_ts
 ```
+
+## Code of Conduct
+
+Please note that the yahtsee project is released with a [Contributor Code of Conduct](http://yahtsee.njtierney.com/CODE_OF_CONDUCT.html). By contributing to this project, you agree to abide by its terms.
