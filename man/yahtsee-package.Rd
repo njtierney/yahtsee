@@ -6,8 +6,7 @@
 \alias{yahtsee-package}
 \title{yahtsee: Yet Another Hierachical Time Series Extension and Expansion}
 \description{
-An opinionated approach to building hierarchical time series
-    models in R using INLA and inlabru.
+An opinionated approach to building hierarchical time series models in R using INLA and inlabru.
 }
 \seealso{
 Useful links:
@@ -19,6 +18,11 @@ Useful links:
 }
 \author{
 \strong{Maintainer}: Nicholas Tierney \email{nicholas.tierney@gmail.com} (\href{https://orcid.org/0000-0003-1460-8722}{ORCID})
+
+Other contributors:
+\itemize{
+  \item Mitchell O'Hara-Wild [contributor]
+}
 
 }
 \keyword{internal}
