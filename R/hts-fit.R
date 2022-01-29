@@ -42,6 +42,7 @@ fit_hts <- function(formula,
                     ...) {
   test_if_tsibble(.data)
   test_if_formula(formula)
+  formula_vars_in_data(.data,formula)
   test_if_hts_not_in_formula(formula)
   test_if_valid_family(family)
   dots <- rlang::dots_list(..., .homonyms = "error")
