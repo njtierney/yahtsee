@@ -70,8 +70,9 @@ We specify the time component at the moment using the `special_index`
 argument (this will be removed later once we resolve a couple of bugs to
 do with the data).
 
-The equivalent model fitted with `inlabru` would look like the
-following:
+The equivalent model fitted with `inlabru` could look like the
+following. (Note that for this code to work you would need to perform
+various data transformations, so this code cannot be run as-is).
 
 ``` r
 inlabru::bru(
