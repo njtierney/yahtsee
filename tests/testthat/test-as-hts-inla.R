@@ -6,7 +6,7 @@ test_that("as_hts_inla works", {
                       pr ~ avg_lower_age + hts(who_subregion, country))),
     c("hts_inla", "bru", "iinla", "inla")
 
-   # class(as_hts_inla("thing", hts_form)),
+    #class(as_hts_inla("thing", hts_form)),
     #c("hts_inla", "list")
 
   )
