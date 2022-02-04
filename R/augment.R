@@ -21,20 +21,22 @@ augment.hts_inla <- function(x,
   passed_newdata <- !is.null(newdata)
 
   if (passed_newdata) {
-      df$.fitted <- predict(x,
+    x$data$.fitted <- predict(x,
                             data = newdata,
                             ...) %>%
         unname()
 
   # some options for exponentiation?
   } else {
-    df$.fitted <- fitted(x, exponentiate = exponentiate)
+    x$data$.fitted <- fitted(x, exponentiate = exponentiate)
   }
 
   response_var <- x$data[[rlang::f_lhs(x$formula)]]
 
-  df$.resid <- (response_var - df$.fitted) %>% unname()
+  x$data$.resid <- (response_var - x$data$.fitted) %>% unname()
 
-  df
+  x$data
+
+
 
 }
