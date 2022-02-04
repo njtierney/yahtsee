@@ -10,6 +10,7 @@ as_hts_inla(x, formula)
 \item{x}{model from inlabru}
 
 \item{formula}{formula passed to \code{fit_hts()}}
+
 }
 \value{
 hts_inla model

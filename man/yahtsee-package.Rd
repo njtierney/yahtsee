@@ -19,6 +19,11 @@ Useful links:
 \author{
 \strong{Maintainer}: Nicholas Tierney \email{nicholas.tierney@gmail.com} (\href{https://orcid.org/0000-0003-1460-8722}{ORCID})
 
+Authors:
+\itemize{
+  \item Aarathy Babu \email{aarathybabu907@gmail.com}
+}
+
 Other contributors:
 \itemize{
   \item Mitchell O'Hara-Wild [contributor]
