@@ -14,4 +14,5 @@ Helper function to show the available likelihoods that can be used
 }
 \examples{
 available_likelihoods()
+# code taken from INLA::inla.models()$likelihood
 }

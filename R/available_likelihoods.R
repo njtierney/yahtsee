@@ -5,6 +5,7 @@
 #'
 #' @examples
 #' available_likelihoods()
+#' # code taken from INLA::inla.models()$likelihood
 available_likelihoods <- function(){
-  INLA::inla.models()$likelihood
+  inla_available_likelihoods
 }
