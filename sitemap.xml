@@ -4,6 +4,9 @@
     <loc>http://yahtsee.njtierney.com/404.html</loc>
   </url>
   <url>
+    <loc>http://yahtsee.njtierney.com/CODE_OF_CONDUCT.html</loc>
+  </url>
+  <url>
     <loc>http://yahtsee.njtierney.com/LICENSE-text.html</loc>
   </url>
   <url>
@@ -31,6 +34,9 @@
     <loc>http://yahtsee.njtierney.com/reference/as_hts_inla.html</loc>
   </url>
   <url>
+    <loc>http://yahtsee.njtierney.com/reference/augment.hts_inla.html</loc>
+  </url>
+  <url>
     <loc>http://yahtsee.njtierney.com/reference/available_likelihoods.html</loc>
   </url>
   <url>
@@ -43,7 +49,16 @@
     <loc>http://yahtsee.njtierney.com/reference/fit_hts.html</loc>
   </url>
   <url>
+    <loc>http://yahtsee.njtierney.com/reference/fitted.hts_inla.html</loc>
+  </url>
+  <url>
+    <loc>http://yahtsee.njtierney.com/reference/glance.hts_inla.html</loc>
+  </url>
+  <url>
     <loc>http://yahtsee.njtierney.com/reference/hts_builder.html</loc>
+  </url>
+  <url>
+    <loc>http://yahtsee.njtierney.com/reference/hts_example_model.html</loc>
   </url>
   <url>
     <loc>http://yahtsee.njtierney.com/reference/index.html</loc>
@@ -58,10 +73,16 @@
     <loc>http://yahtsee.njtierney.com/reference/pipe.html</loc>
   </url>
   <url>
+    <loc>http://yahtsee.njtierney.com/reference/predict.hts_inla.html</loc>
+  </url>
+  <url>
     <loc>http://yahtsee.njtierney.com/reference/prediction_data.html</loc>
   </url>
   <url>
     <loc>http://yahtsee.njtierney.com/reference/reexports.html</loc>
+  </url>
+  <url>
+    <loc>http://yahtsee.njtierney.com/reference/tidy.hts_inla.html</loc>
   </url>
   <url>
     <loc>http://yahtsee.njtierney.com/reference/who_regions.html</loc>

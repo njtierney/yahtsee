@@ -63,7 +63,15 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">fit_hts</span><span class="op">(</span><span class="va">formula</span>, <span class="va">.data</span>, <span class="va">special_index</span>, <span class="va">family</span>, <span class="va">...</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">fit_hts</span><span class="op">(</span>
+  <span class="va">formula</span>,
+  <span class="va">.data</span>,
+  <span class="va">special_index</span>,
+  <span class="va">family</span>,
+  verbose <span class="op">=</span> <span class="cn">TRUE</span>,
+  keep_data <span class="op">=</span> <span class="cn">TRUE</span>,
+  <span class="va">...</span>
+<span class="op">)</span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -76,6 +84,11 @@
 <dd><p>The variable that represents time in your data</p></dd>
 <dt>family</dt>
 <dd><p>character.</p></dd>
+<dt>verbose</dt>
+<dd><p>default TRUE, whether to display message</p></dd>
+<dt>keep_data</dt>
+<dd><p>attach the data used to fit the model to the final
+model object?</p></dd>
 <dt>...</dt>
 <dd><p>list of options to pass to <code><a href="https://inlabru-org.github.io/inlabru/reference/bru.html" class="external-link">inlabru::bru</a></code>, see <code><a href="https://inlabru-org.github.io/inlabru/reference/bru.html" class="external-link">?inlabru::bru</a></code>
 to see these options.</p></dd>
@@ -114,11 +127,11 @@ where <code>vec</code> is a vector of variances for each observation.</p>
 
 
       <footer><div class="copyright">
-  <p></p><p>Developed by Nicholas Tierney.</p>
+  <p></p><p>Developed by Nicholas Tierney, Aarathy Babu.</p>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.1.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
 </div>
 
       </footer></div>

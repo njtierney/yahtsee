@@ -106,9 +106,9 @@
 <span class="co">#&gt; The following objects are masked from 'package:base':</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt;     intersect, setdiff, setequal, union</span></code></pre></div>
-<div class="section level2">
-<h2 id="the-data">The data<a class="anchor" aria-label="anchor" href="#the-data"></a>
-</h2>
+<div class="section level3">
+<h3 id="the-data">The data<a class="anchor" aria-label="anchor" href="#the-data"></a>
+</h3>
 <p>For this model we are going to fit a very simple model using some summarised data from the <code>malariaAtlas</code> R package, <code>malaria_africa_ts</code>:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">malaria_africa_ts</span>
@@ -135,10 +135,10 @@
 <li>Positive rate measurements recorded over time for these areas (positive rate given by the number of positive cases divided by the number of cases examined).</li>
 </ul>
 <p>(Note that we are still getting some more covariates for this data.)</p>
-<div class="section level3">
-<h3 id="tsibble-data">
+<div class="section level4">
+<h4 id="tsibble-data">
 <code>tsibble</code> data<a class="anchor" aria-label="anchor" href="#tsibble-data"></a>
-</h3>
+</h4>
 <p>This data is a <code>tsibble</code> (the “ts” is pronounced like the end of “ba<strong>ts</strong>”).</p>
 <p>This is a speical time series aware table, that knows what elements identify the individual time components, in this case, country, and what the time index is, in this case, <code>date</code>.</p>
 <p>We use a <code>tsibble</code> because it stores this time (referred to as an “index”) and group (referred to as a “key”) information, which we can use inside our modelling software.</p>
@@ -151,9 +151,9 @@
 <span class="co">#&gt; date</span></code></pre></div>
 </div>
 </div>
-<div class="section level2">
-<h2 id="modelling">Modelling<a class="anchor" aria-label="anchor" href="#modelling"></a>
-</h2>
+<div class="section level3">
+<h3 id="modelling">Modelling<a class="anchor" aria-label="anchor" href="#modelling"></a>
+</h3>
 <p>Let’s say we want to model the pr over time. Here is a plot of the pr over time, where each line is a country, and facets represent the different who subregions:</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">malaria_africa_ts</span>,
@@ -210,9 +210,9 @@ formula <span class="op">=</span> <span class="va">pr</span> <span class="op">~<
 <li>Additional options passed to <code>inlabru</code> in options to help get the appropriate data back.</li>
 </ol>
 </div>
-<div class="section level1">
-<h1 id="proposed-workflow">Proposed workflow<a class="anchor" aria-label="anchor" href="#proposed-workflow"></a>
-</h1>
+<div class="section level2">
+<h2 id="proposed-workflow">Proposed workflow<a class="anchor" aria-label="anchor" href="#proposed-workflow"></a>
+</h2>
 <p>The proposed workflow of this type of model is as follows:</p>
 <ol style="list-style-type: decimal">
 <li>Specify data as a <code>tsibble</code> object:</li>
@@ -290,12 +290,12 @@ formula <span class="op">=</span> <span class="va">pr</span> <span class="op">~<
 
       <footer><div class="copyright">
   <p></p>
-<p>Developed by Nicholas Tierney.</p>
+<p>Developed by Nicholas Tierney, Aarathy Babu.</p>
 </div>
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.1.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
 </div>
 
       </footer>

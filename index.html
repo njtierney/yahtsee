@@ -146,6 +146,29 @@ formula <span class="op">=</span> <span class="va">pr</span> <span class="op">~<
       control.predictor <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>compute <span class="op">=</span> <span class="cn">TRUE</span>, link <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>
       <span class="op">)</span>
       <span class="op">)</span></code></pre></div>
+<p>Which would be equivalent to the following INLA code</p>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">INLA</span><span class="fu">::</span><span class="fu">inla</span><span class="op">(</span>
+formula <span class="op">=</span> <span class="va">pr</span> <span class="op">~</span> <span class="va">avg_lower_age</span> <span class="op">+</span> <span class="va">Intercept</span> <span class="op">+</span> 
+  <span class="fu">f</span><span class="op">(</span><span class="va">month_num_1</span>, 
+             model <span class="op">=</span> <span class="st">"ar1"</span>, 
+             group <span class="op">=</span> <span class="va">.who_region_id</span>,
+             constr <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> <span class="op">+</span> 
+  <span class="fu">f</span><span class="op">(</span><span class="va">month_num_2</span>, 
+                model <span class="op">=</span> <span class="st">"ar1"</span>, 
+                group <span class="op">=</span> <span class="va">.who_subregion_id</span>, 
+                constr <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> <span class="op">+</span> 
+  <span class="fu">f</span><span class="op">(</span><span class="va">month_num_3</span>, 
+          model <span class="op">=</span> <span class="st">"ar1"</span>, 
+          group <span class="op">=</span> <span class="va">.country_id</span>, 
+          constr <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>,
+    family <span class="op">=</span> <span class="st">"gaussian"</span>,
+    data <span class="op">=</span> <span class="va">malaria_africa_ts</span>,
+    options <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>
+      control.compute <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>config <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>,
+      control.predictor <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>compute <span class="op">=</span> <span class="cn">TRUE</span>, link <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>
+      <span class="op">)</span>
+      <span class="op">)</span></code></pre></div>
 <p>Using <code>yahtsee</code>’s <code>fit_hts</code> function, we now do not need to think about the following:</p>
 <ol style="list-style-type: decimal">
 <li>What to name the random effects (who_region, who_subregion, country)</li>
@@ -177,7 +200,7 @@ formula <span class="op">=</span> <span class="va">pr</span> <span class="op">~<
 <div class="section level2">
 <h2 id="example-data">Example data<a class="anchor" aria-label="anchor" href="#example-data"></a>
 </h2>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/njtierney/yahtsee" class="external-link">yahtsee</a></span><span class="op">)</span>
 <span class="co">#&gt; Loading required package: tsibble</span>
 <span class="co">#&gt; </span>
@@ -192,7 +215,7 @@ formula <span class="op">=</span> <span class="va">pr</span> <span class="op">~<
 <li>
 <code>who_regions</code>, containing region information from WHO database</li>
 </ol>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">who_regions</span>
 <span class="co">#&gt; # A tibble: 110 × 4</span>
 <span class="co">#&gt;    who_region who_subregion country     country_iso_code</span>
@@ -213,7 +236,7 @@ formula <span class="op">=</span> <span class="va">pr</span> <span class="op">~<
 <code>malaria_africa_ts</code> - containing malaria prevalence data, extracted using the <code>malariaAtlas</code> R package - <a href="https://cran.r-project.org/web/packages/malariaAtlas/vignettes/overview.html" class="external-link uri">https://cran.r-project.org/web/packages/malariaAtlas/vignettes/overview.html</a>
 </li>
 </ol>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">malaria_africa_ts</span>
 <span class="co">#&gt; # A tsibble: 1,046 x 15 [1D]</span>
 <span class="co">#&gt; # Key:       country [46]</span>
@@ -232,6 +255,11 @@ formula <span class="op">=</span> <span class="va">pr</span> <span class="op">~<
 <span class="co">#&gt; # … with 1,036 more rows, and 8 more variables: pr &lt;dbl&gt;, avg_lower_age &lt;dbl&gt;,</span>
 <span class="co">#&gt; #   continent_id &lt;fct&gt;, country_id &lt;fct&gt;, year &lt;int&gt;, month &lt;int&gt;,</span>
 <span class="co">#&gt; #   avg_upper_age &lt;dbl&gt;, species &lt;fct&gt;</span></code></pre></div>
+</div>
+<div class="section level2">
+<h2 id="code-of-conduct">Code of Conduct<a class="anchor" aria-label="anchor" href="#code-of-conduct"></a>
+</h2>
+<p>Please note that the yahtsee project is released with a <a href="http://yahtsee.njtierney.com/CODE_OF_CONDUCT.html">Contributor Code of Conduct</a>. By contributing to this project, you agree to abide by its terms.</p>
 </div>
 </div>
   </div>
@@ -254,6 +282,12 @@ formula <span class="op">=</span> <span class="va">pr</span> <span class="op">~<
 </ul>
 </div>
 
+<div class="community">
+<h2 data-toc-skip>Community</h2>
+<ul class="list-unstyled">
+<li><a href="CODE_OF_CONDUCT.html">Code of conduct</a></li>
+</ul>
+</div>
 
 <div class="citation">
 <h2 data-toc-skip>Citation</h2>
@@ -266,6 +300,8 @@ formula <span class="op">=</span> <span class="va">pr</span> <span class="op">~<
 <h2 data-toc-skip>Developers</h2>
 <ul class="list-unstyled">
 <li>Nicholas Tierney <br><small class="roles"> Author, maintainer </small> <a href="https://orcid.org/https://orcid.org/0000-0003-1460-8722" target="orcid.widget" aria-label="ORCID" class="external-link"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a> </li>
+<li>Aarathy Babu <br><small class="roles"> Author </small>  </li>
+<li><a href="authors.html">More about authors...</a></li>
 </ul>
 </div>
 
@@ -285,12 +321,12 @@ formula <span class="op">=</span> <span class="va">pr</span> <span class="op">~<
 
       <footer><div class="copyright">
   <p></p>
-<p>Developed by Nicholas Tierney.</p>
+<p>Developed by Nicholas Tierney, Aarathy Babu.</p>
 </div>
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.1.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
 </div>
 
       </footer>
