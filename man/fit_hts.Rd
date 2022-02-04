@@ -4,7 +4,15 @@
 \alias{fit_hts}
 \title{Fit a hierarchical time series model}
 \usage{
-fit_hts(formula, .data, special_index, family, ...)
+fit_hts(
+  formula,
+  .data,
+  special_index,
+  family,
+  verbose = TRUE,
+  keep_data = TRUE,
+  ...
+)
 }
 \arguments{
 \item{formula}{formula must contain fixed effect terms and \code{hts()}}
@@ -14,6 +22,11 @@ fit_hts(formula, .data, special_index, family, ...)
 \item{special_index}{The variable that represents time in your data}
 
 \item{family}{character.}
+
+\item{verbose}{default TRUE, whether to display message}
+
+\item{keep_data}{attach the data used to fit the model to the final
+model object?}
 
 \item{...}{list of options to pass to \code{inlabru::bru}, see \code{?inlabru::bru}
 to see these options.}

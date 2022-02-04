@@ -1,12 +1,17 @@
 Package: yahtsee
 Title: Yet Another Hierachical Time Series Extension and Expansion
 Version: 0.0.0.9000
-Authors@R: 
+Authors@R:  c(
     person(given = "Nicholas",
            family = "Tierney",
            role = c("aut", "cre"),
            email = "nicholas.tierney@gmail.com",
-           comment = c(ORCID = "https://orcid.org/0000-0003-1460-8722"))
+           comment = c(ORCID = "https://orcid.org/0000-0003-1460-8722")),
+      person("Aarathy","Babu",
+         role = "aut",
+         email = "aarathybabu907@gmail.com"),
+    person("Mitchell", "O'Hara-Wild",
+         role = "ctb"))
 Description: An opinionated approach to building hierarchical time series
     models in R using INLA and inlabru.
 License: MIT + file LICENSE
@@ -30,8 +35,10 @@ Imports:
     methods,
     clock,
     tidyr,
+    tidyselect,
     lifecycle,
-    formula.tools
+    formula.tools,
+    generics
 Suggests: 
     ggplot2,
     covr,
@@ -47,6 +54,6 @@ Encoding: UTF-8
 Language: es
 LazyData: true
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.1.1
+RoxygenNote: 7.1.2
 Remotes: 
     r-lib/cli

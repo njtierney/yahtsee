@@ -7,9 +7,9 @@
 #' @author Nicholas Tierney
 #' @note internal
 as_hts_inla <- function(x, formula) {
+  class(x) <- c("hts_inla", "bru", "iinla", "inla")
   x$hts_response <- rlang::f_lhs(formula)
   x$hts_terms <- extract_hts(formula)
   x$formula <- formula
-  class(x) <- c("hts_inla", class(x))
   x
 }
