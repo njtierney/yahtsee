@@ -93,7 +93,24 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> • avg_lower_age + hts(who_subregion, country)</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span class="fu"><a href="https://generics.r-lib.org/reference/augment.html" class="external-link">augment</a></span><span class="op">(</span><span class="va">hts_example_model</span><span class="op">)</span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in df$.fitted &lt;- fitted(x, exponentiate = exponentiate):</span> object of type 'closure' is not subsettable</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tsibble: 1,046 x 19 [1D]</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># Key:       country [46]</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    who_region who_subregion country date       month_num positive examined</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span>         <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>         <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;int&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> AFRO       AFRO-W        Angola  1989-06-01       120     15.8       50</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> AFRO       AFRO-W        Angola  2005-11-01       372     82        111</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> AFRO       AFRO-W        Angola  2006-04-01       300    102        197</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> AFRO       AFRO-W        Angola  2006-11-01       384     41        347</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> AFRO       AFRO-W        Angola  2006-12-01       396    173        734</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> AFRO       AFRO-W        Angola  2007-01-01       276    216        828</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> AFRO       AFRO-W        Angola  2007-02-01       288     42         71</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> AFRO       AFRO-W        Angola  2007-03-01       300    119        448</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> AFRO       AFRO-W        Angola  2011-01-01       324      1        239</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> AFRO       AFRO-W        Angola  2011-02-01       336    148       <span style="text-decoration: underline;">1</span>132</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># … with 1,036 more rows, and 12 more variables: pr &lt;dbl&gt;, avg_lower_age &lt;dbl&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   continent_id &lt;fct&gt;, country_id &lt;fct&gt;, year &lt;int&gt;, month &lt;int&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   avg_upper_age &lt;dbl&gt;, species &lt;fct&gt;, .who_subregion_id &lt;int&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   .country_id &lt;int&gt;, .fitted &lt;dbl&gt;, .resid &lt;dbl&gt;</span></span>
 </code></pre></div>
     </div>
   </div>
