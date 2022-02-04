@@ -1,7 +1,7 @@
 Package: yahtsee
 Title: Yet Another Hierachical Time Series Extension and Expansion
 Version: 0.0.0.9000
-Authors@R:  c(
+Authors@R: c(
     person(given = "Nicholas",
            family = "Tierney",
            role = c("aut", "cre"),
@@ -38,7 +38,8 @@ Imports:
     tidyselect,
     lifecycle,
     formula.tools,
-    generics
+    generics,
+    vctrs
 Suggests: 
     ggplot2,
     covr,
